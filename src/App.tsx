@@ -6,33 +6,12 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  useColorScheme,
-  Text,
-  View,
-} from 'react-native';
 
-import {
-  Colors
-} from 'react-native/Libraries/NewAppScreen';
+import Navigation from './navigation/Navigation';
 
-function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+const App = (): JSX.Element => {
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <View
-        style={{
-          backgroundColor: isDarkMode ? Colors.black : Colors.white,
-        }}>
-        <Text>This is Neatbeat and says Hello!</Text>
-      </View>
-    </SafeAreaView>
+    <Navigation />
   );
 }
 
