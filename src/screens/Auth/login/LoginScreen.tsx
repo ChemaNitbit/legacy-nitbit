@@ -8,9 +8,20 @@ import { styles } from './login.styles';
 // Custom Components
 import NBButton from '../../../components/nb-button/NBButton';
 
-const LoginScreen = () => {
+// Firebase
+import { auth } from '../../../../firebase-config';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
+const LoginScreen = ({ navigation }: any) => {
     const [email, onChangeEmail] = React.useState('');
     const [password, onChangePassword] = React.useState('');
+
+    const handleLogin = () => {
+        signInWithEmailAndPassword(auth, email, password).then(res => {
+            console.log("SignIn > user: ", res.user);
+            navigation.navigate('Home');
+        }).catch(error => console.log("SignIn > Error: ", error));
+    }
 
     return (
         <SafeAreaView style={styles.screenContainer}>
@@ -22,7 +33,7 @@ const LoginScreen = () => {
                     <Text style={styles.title}>Inicio de sesión</Text>
                     <TextInput style={styles.formField} onChangeText={onChangeEmail} value={email} label="Correo" />
                     <TextInput style={styles.formField} onChangeText={onChangePassword} value={password} label="Contraseña" />
-                    <NBButton title={'Iniciar sesión'}></NBButton>
+                    <NBButton onPress={handleLogin} title={'Iniciar sesión'}></NBButton>
                     <View style={styles.forgotPasswordContainer}>
                         <Image source={require('../../../../assets/icons/sad.png')}></Image>
                         <Text style={styles.forgotPasswordText}>Olvide mi contraseña</Text>
