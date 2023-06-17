@@ -1,10 +1,24 @@
 import React from 'react';
 import { SafeAreaView, ScrollView, View, Image, Text, StyleSheet } from 'react-native';
 
+// Firebase
+import { signOut, getAuth } from 'firebase/auth';
+
 // Custom Components
 import NBButton from '../../components/nb-button/NBButton';
 
 const HomeScreen = ({ navigation }: any): JSX.Element => {
+
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    const handleLogout = () => {
+        signOut(auth).then((_) => {
+            navigation.navigate('Welcome');
+        }).catch(error => console.error("SignOut > Error: ", error));
+    }
+
+
     return (
         <SafeAreaView style={styles.screenContainer}>
             <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start', alignItems: 'center' }} style={styles.scrollContainer}>
@@ -13,9 +27,10 @@ const HomeScreen = ({ navigation }: any): JSX.Element => {
                     <Image source={require('../../../assets/logo/neatbeat-logo.png')} />
                 </View>
 
+                <Text>Bienvenido, {user?.displayName}!</Text>
+
                 <View style={[styles.card]}>
-                    <NBButton title={'Iniciar sesión'} onPress={() => navigation.navigate('Login')}></NBButton>
-                    <NBButton title={'Crear cuenta'} onPress={() => navigation.navigate('SignUp')}></NBButton>
+                    <NBButton title={'Cerrar sesión'} onPress={handleLogout}></NBButton>
                 </View>
 
             </ScrollView>
