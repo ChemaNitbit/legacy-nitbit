@@ -6,7 +6,13 @@ import { TextInput } from '@react-native-material/core';
 // Custom Components
 import NBButton from '../../../components/nb-button/NBButton';
 
-const SignupScreen = () => {
+//Firebase
+import { firestoreDB } from '../../../../firebase-config';
+import { setDoc, doc } from 'firebase/firestore';
+import { auth } from '../../../../firebase-config';
+import { createUserWithEmailAndPassword, updateProfile, getAuth, User } from 'firebase/auth';
+
+const SignupScreen = ({ navigation }: any) => {
 
     const [name, onChangeName] = React.useState('')
     const [lastname, onChangeLastname] = React.useState('')
@@ -15,6 +21,26 @@ const SignupScreen = () => {
     const [confirmPassword, onChangeConfirmPassword] = React.useState('')
     const [birthdate, onChangeBirthdate] = React.useState('')
     const [isSelected, setSelection] = useState(false);
+
+    const handleSignUp = () => {
+
+        const userData = {
+            name, lastname, email, birthdate
+        }
+
+        createUserWithEmailAndPassword(auth, email, password).then((response) => {
+            console.log("SignUp > uid:", response.user.uid);
+            const docRef = doc(firestoreDB, 'users', response.user.uid);
+            return setDoc(docRef, userData);
+        }).then(createUserResponse => {
+            console.log("AddDoc > user: ", createUserResponse);
+            const authUser = getAuth();
+            return updateProfile((authUser.currentUser as User), { displayName: name })
+        }).then(updateProfileResponse => {
+            console.log("updateProfile > updateProfileResponse: ", updateProfileResponse);
+            navigation.navigate('Login')
+        }).catch(error => console.error("SignUp > Error: ", error));
+    }
 
     return (
         <SafeAreaView style={styles.screenContainer}>
@@ -39,7 +65,7 @@ const SignupScreen = () => {
                     </View>
 
                     <View style={{ marginVertical: 20 }}>
-                        <NBButton title={'Crear Cuenta'}></NBButton>
+                        <NBButton onPress={handleSignUp} title={'Crear Cuenta'}></NBButton>
                     </View>
 
                 </View>
