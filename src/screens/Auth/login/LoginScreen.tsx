@@ -19,7 +19,7 @@ const LoginScreen = ({ navigation }: any) => {
     const handleLogin = () => {
         signInWithEmailAndPassword(auth, email, password).then(res => {
             console.log("SignIn > user: ", res.user);
-            navigation.navigate('Home');
+            navigation.navigate('Splash');
         }).catch(error => console.log("SignIn > Error: ", error));
     }
 
