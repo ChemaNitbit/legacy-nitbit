@@ -18,7 +18,7 @@ const LoginScreen = ({ navigation }: any) => {
 
     const handleLogin = () => {
         signInWithEmailAndPassword(auth, email, password).then(res => {
-            console.log("SignIn > user: ", res.user);
+            // console.log("SignIn > user: ", res.user);
             navigation.navigate('Splash');
         }).catch(error => console.log("SignIn > Error: ", error));
     }
@@ -32,7 +32,7 @@ const LoginScreen = ({ navigation }: any) => {
                 <View style={[styles.card]}>
                     <Text style={styles.title}>Inicio de sesión</Text>
                     <TextInput style={styles.formField} onChangeText={onChangeEmail} value={email} label="Correo" />
-                    <TextInput style={styles.formField} onChangeText={onChangePassword} value={password} label="Contraseña" />
+                    <TextInput style={styles.formField} onChangeText={onChangePassword} value={password} label="Contraseña" secureTextEntry={true} />
                     <NBButton onPress={handleLogin} title={'Iniciar sesión'}></NBButton>
                     <View style={styles.forgotPasswordContainer}>
                         <Image source={require('../../../../assets/icons/sad.png')}></Image>

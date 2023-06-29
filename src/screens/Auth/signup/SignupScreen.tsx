@@ -29,15 +29,15 @@ const SignupScreen = ({ navigation }: any) => {
         }
 
         createUserWithEmailAndPassword(auth, email, password).then((response) => {
-            console.log("SignUp > uid:", response.user.uid);
+            // console.log("SignUp > uid:", response.user.uid);
             const docRef = doc(firestoreDB, 'users', response.user.uid);
             return setDoc(docRef, userData);
         }).then(createUserResponse => {
-            console.log("AddDoc > user: ", createUserResponse);
+            // console.log("AddDoc > user: ", createUserResponse);
             const authUser = getAuth();
             return updateProfile((authUser.currentUser as User), { displayName: name })
         }).then(updateProfileResponse => {
-            console.log("updateProfile > updateProfileResponse: ", updateProfileResponse);
+            // console.log("updateProfile > updateProfileResponse: ", updateProfileResponse);
             navigation.navigate('Login')
         }).catch(error => console.error("SignUp > Error: ", error));
     }
