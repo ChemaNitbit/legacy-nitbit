@@ -1,7 +1,8 @@
 import * as React from 'react';
 
 import { Flex, Box } from "@react-native-material/core";
-import { Image, StyleSheet, Text } from 'react-native';
+import { Image, Text } from 'react-native';
+import NbProfilePhoto from '../nb-profile-photo/NbProfilePhoto';
 
 
 const NbHeader = () => {
@@ -20,7 +21,8 @@ const NbHeader = () => {
             <Box h={'100%'} style={{ flex: 2 }}>
                 <Flex fill justify='center' items='center'>
                     <Box style={{ flex: 8, display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
-                        <Image source={require('../../../assets/logo/profile.jpg')} style={styles.roundedImage} />
+                        {/* <Image source={require('../../../assets/logo/profile.jpg')} style={styles.roundedImage} /> */}
+                        <NbProfilePhoto />
                     </Box>
                     <Box style={{ flex: 2 }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 18, fontFamily: 'Roboto', lineHeight: 20, textAlign: 'left' }}>Damian Zamora</Text>
@@ -42,9 +44,3 @@ const NbHeader = () => {
 }
 
 export default NbHeader;
-
-const styles = StyleSheet.create({
-    roundedImage: {
-        width: 100, height: 100, borderRadius: 50
-    }
-})
