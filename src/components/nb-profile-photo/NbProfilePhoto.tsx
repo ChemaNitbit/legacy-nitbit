@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-import { Image } from 'react-native';
-import { StyleSheet } from 'react-native';
 import { Menu } from 'react-native-paper';
 import { TouchableOpacity, LayoutChangeEvent, UIManager, findNodeHandle, PermissionsAndroid } from 'react-native';
 import { View } from 'react-native';
@@ -9,8 +7,9 @@ import { View } from 'react-native';
 import { launchImageLibrary, ImageLibraryOptions, ImagePickerResponse, launchCamera, CameraOptions } from 'react-native-image-picker';
 
 import { storage } from '../../../firebase-config';
-import { StorageError, StorageReference, UploadMetadata, UploadResult, UploadTaskSnapshot, getDownloadURL, ref, uploadBytes, uploadBytesResumable, uploadString } from 'firebase/storage';
+import { StorageError, UploadTaskSnapshot, getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { User, getAuth, updateProfile } from 'firebase/auth';
+import NbAvatar from '../nb-avatar/NbAvatar';
 
 interface MenuAnchor {
     x: number;
@@ -23,9 +22,7 @@ const NbProfilePhoto = () => {
 
     const [visible, setVisible] = React.useState(false);
     const [menuAnchor, setMenuAnchor] = React.useState<MenuAnchor | null>(null);
-    const [selectImage, setSelectImage] = React.useState('');
-
-    //const storageRef = ref(storage, 'profiles/test.jpg');
+    const [selectImage, setSelectImage] = React.useState<string | undefined>();
 
     const imageRef: any = React.useRef(null);
 
@@ -70,15 +67,10 @@ const NbProfilePhoto = () => {
                     console.log('Error al tomar la foto: ', response.errorCode);
                 } else {
                     const uri = response.assets ? (response.assets[0].uri as string) : ''
-                    console.log('Foto tomada correctamente: ', uri);
-                    // setSelectImage(uri);
-
                     const responseURI = await fetch(uri);
                     const blob = await responseURI.blob();
                     const filename = `${Date.now()}.jpg`;
-
                     const storageRef = ref(storage, `profiles/${filename}`);
-
                     const uploadTask = uploadBytesResumable(storageRef, blob);
 
                     uploadTask.on('state_changed',
@@ -90,22 +82,12 @@ const NbProfilePhoto = () => {
                         },
                         () => {
                             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL: string) => {
-                                console.log(">> downloadURL: ", downloadURL);
-
                                 const authUser = getAuth();
-
                                 updateProfile(authUser.currentUser as User, { photoURL: downloadURL })
                                 setSelectImage(downloadURL);
                             })
                         }
                     )
-
-                    // uploadBytes(storageRef, blob, metadata).then((res: UploadResult) => {
-                    //     console.log("uploadString:Res ", res.metadata.fullPath);
-
-
-
-                    // }).catch(error => console.error('uploadString:Error: ', error));
                 }
             }
 
@@ -136,12 +118,7 @@ const NbProfilePhoto = () => {
     return (
         <View>
             <TouchableOpacity onPress={openMenu} onLayout={onLayout} ref={imageRef}>
-                {/* */}
-                {
-                    selectImage ?
-                        <Image source={{ uri: selectImage }} style={styles.roundedImage} />
-                        : <Image source={require('../../../assets/logo/profile.jpg')} style={styles.roundedImage} />
-                }
+                <NbAvatar url={selectImage} size={100} />
             </TouchableOpacity>
 
             <Menu
@@ -154,11 +131,5 @@ const NbProfilePhoto = () => {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    roundedImage: {
-        width: 100, height: 100, borderRadius: 50
-    }
-})
 
 export default NbProfilePhoto;

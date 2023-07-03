@@ -1,17 +1,23 @@
 import * as React from 'react';
 
 import { Flex, Box } from "@react-native-material/core";
-import { Image, StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
+import NbAvatar from '../nb-avatar/NbAvatar';
+import { Post } from '../../@types/post.type';
 
-const PostCard = ({ post }: any) => {
+export interface PostCardProps {
+    post: Post
+}
+
+const PostCard: React.FC<PostCardProps> = ({ post }) => {
     return (
         <Flex fill direction='row' style={styles.container}>
 
             <Box style={styles.imageProfileContainer}>
-                <Image source={{ uri: post.user.profilePhoto }} style={styles.roundedImage} />
+                <NbAvatar url={post.user ? post.user.profilePhoto : undefined} size={75} />
             </Box>
             <Box style={styles.postContainer}>
-                <Text style={styles.profileText}>{post.user.name} {post.user.lastname}</Text>
+                <Text style={styles.profileText}>{post?.user?.name} {post?.user?.lastname}</Text>
                 <Text style={styles.postText}>{post.description}</Text>
             </Box>
 
@@ -21,6 +27,7 @@ const PostCard = ({ post }: any) => {
 
 const styles = StyleSheet.create({
     container: {
+        maxHeight: 75,
         gap: 10,
         paddingHorizontal: 25,
         marginVertical: 20
@@ -30,11 +37,6 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignContent: 'center'
-    },
-    roundedImage: {
-        width: 75,
-        height: 75,
-        borderRadius: 37.5
     },
     postContainer: {
         flex: 6,

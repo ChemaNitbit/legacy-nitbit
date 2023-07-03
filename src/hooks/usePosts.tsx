@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { fetchPosts } from "../services/post.service"
+import { fetchPosts, fetchPostsRealtime } from "../services/post.service"
 import { Post } from "../@types/post.type";
 
 export const useFetchPosts = () => {
@@ -10,7 +10,7 @@ export const useFetchPosts = () => {
     useEffect(() => {
         const fetchDate = async () => {
 
-            fetchPosts()
+            fetchPostsRealtime()
                 .then((posts: Post[]) => setPosts(posts.length ? posts : []))
                 .finally(() => setLoading(false));
 
