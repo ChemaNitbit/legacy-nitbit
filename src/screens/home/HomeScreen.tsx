@@ -6,16 +6,22 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import MessageTempTab from './tabs/MessageTempTab';
 import MessageFixedTab from './tabs/MessageFixedTab';
 
+import { AppProvider } from '../../context/AppContext';
+import NbToolbar from '../../components/nb-toolbar/NbToolbar';
 
 const Tab = createBottomTabNavigator();
 
 const HomeScreen = (): JSX.Element => {
     return (
-        <Tab.Navigator initialRouteName='HomeTab'>
-            <Tab.Screen name="MessageTempTab" component={MessageTempTab} options={{ title: 'Bit temporales', headerShown: false, tabBarIcon: (props) => <MaterialCommunityIcons name="message-text-clock-outline" color={'black'} size={30} /> }} />
-            <Tab.Screen name="HomeTab" component={HomeTab} options={{ title: 'Home', headerShown: false, tabBarIcon: (props) => <MaterialCommunityIcons name="account-outline" color={'black'} size={30} /> }} />
-            <Tab.Screen name="MessageFixedTab" component={MessageFixedTab} options={{ title: 'Nit permanentes', headerShown: false, tabBarIcon: (props) => <MaterialCommunityIcons name="message-text-outline" color={'black'} size={30} /> }} />
-        </Tab.Navigator>
+        // <AppProvider>
+            <Tab.Navigator initialRouteName='HomeTab'>
+                <Tab.Screen name="MessageTempTab" component={MessageTempTab} options={{ title: 'Bit temporales', headerShown: false}}/>
+                <Tab.Screen name="HomeTab" component={HomeTab} options={{ title: 'Home', tabBarIcon: (props) => <MaterialCommunityIcons name="account-outline" color={'black'} size={30} />, header: (props) =>
+                                <NbToolbar {...props} back={false}></NbToolbar> }} />
+                <Tab.Screen name="MessageFixedTab" component={MessageFixedTab} options={{ title: 'Nit permanentes', headerShown: false, tabBarIcon: (props) => <MaterialCommunityIcons name="message-text-outline" color={'black'} size={30} /> }} />
+            </Tab.Navigator>
+        // </AppProvider>
+
     )
 }
 

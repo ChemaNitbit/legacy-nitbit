@@ -12,15 +12,13 @@ export interface PostCardProps {
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
     return (
         <Flex fill direction='row' style={styles.container}>
-
             <Box style={styles.imageProfileContainer}>
                 <NbAvatar url={post.user ? post.user.profilePhoto : undefined} size={75} />
             </Box>
             <Box style={styles.postContainer}>
-                <Text style={styles.profileText}>{post?.user?.name} {post?.user?.lastname}</Text>
                 <Text style={styles.postText}>{post.description}</Text>
+                <Text style={styles.profileText}>{post?.user?.name} {post?.user?.lastname}</Text>
             </Box>
-
         </Flex>
     )
 }
@@ -42,6 +40,8 @@ const styles = StyleSheet.create({
         flex: 6,
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
         gap: 10
     },
     profileText: {

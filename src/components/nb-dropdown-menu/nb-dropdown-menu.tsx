@@ -12,7 +12,7 @@ const DropdownMenu = () => {
 
     const handleMenuItemClick = (item: any) => {
         // Aquí puedes agregar la lógica para manejar los clics de los elementos del menú
-        console.log('Clic en el elemento:', item);
+        // console.log('Clic en el elemento:', item);
         // ... realiza las acciones que necesites
         toggleMenu(); // Cierra el menú después de hacer clic en un elemento
     };

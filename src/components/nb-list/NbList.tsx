@@ -3,6 +3,7 @@ import { View, Text, ScrollView, StyleSheet, SafeAreaView } from 'react-native';
 import { Post } from "../../@types/post.type";
 import { useFetchPosts } from "../../hooks/usePosts"
 import PostCard from '../nb-post-card/NbPostCard';
+import { AppContextType, useAppContext } from '../../context/AppContext';
 
 export interface NbListProps {
     posts: Post[];
@@ -11,9 +12,9 @@ export interface NbListProps {
 
 const NbList: React.FC<any> = () => {
 
-    const { posts, isLoading } = useFetchPosts();
+    const { posts, isLoadingPosts } = useAppContext() as AppContextType;
 
-    if (isLoading) return <Text>Loading...</Text>
+    if (isLoadingPosts) return <Text>Loading...</Text>
 
     return (
 

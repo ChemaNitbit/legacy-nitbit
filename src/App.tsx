@@ -8,10 +8,13 @@
 import React from 'react';
 
 import Navigation from './navigation/Navigation';
+import { AppProvider } from './context/AppContext';
 
 const App = (): JSX.Element => {
   return (
-    <Navigation />
+    <AppProvider>
+      <Navigation />
+    </AppProvider>
   );
 }
 

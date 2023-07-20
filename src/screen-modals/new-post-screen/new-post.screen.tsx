@@ -9,16 +9,25 @@ import { Post } from '../../@types/post.type';
 
 import { firestoreDB } from '../../../firebase-config';
 import { collection, addDoc } from 'firebase/firestore';
+import { AppContextType, useAppContext } from '../../context/AppContext';
+import { useCurrentUser } from '../../hooks/useCurrentUser';
+import { User } from 'firebase/auth';
 
 const NewPost = ({ navigation, route }: any) => {
+
+    const { addNewPost } = useAppContext() as AppContextType;
+
+    const { photoURL, currentUser} = useCurrentUser();
 
     const [selectedLanguage, setSelectedLanguage] = React.useState<string>('');
 
     const [post, setPost] = React.useState<string>('');
 
-    const photoURL: string = route.params.photoURL;
+    // const { addPost } = useAppContext() as AppContextType;
 
-    const userId: string = route.params.userId;
+    // const photoURL: string = route.params.photoURL;
+
+    // const userId: string = route.params.userId;
 
     const handlePrivacySelect = (value: string) => {
         setSelectedLanguage(value);
@@ -27,27 +36,29 @@ const NewPost = ({ navigation, route }: any) => {
     const handleSavePost = () => {
 
 
-        const postsRef = collection(firestoreDB, 'posts');
+        // const postsRef = collection(firestoreDB, 'posts');
 
 
         const newPost: Post = {
-            idUser: userId,
+            idUser: (currentUser as User)?.uid,
             description: post,
             title: 'Test from App',
             createAt: new Date(),
         }
 
-        addDoc(postsRef, newPost).then((response) => {
-            setPost('');
-            navigation.goBack();
-        }).catch((error) => console.log("newPost::Error: ", error));
+        addNewPost(newPost, navigation);
+
+        // addDoc(postsRef, newPost).then((response) => {
+        //     setPost('');
+        //     navigation.goBack();
+        // }).catch((error) => console.log("newPost::Error: ", error));
     }
 
     return (
         <View style={{ padding: 10, display: 'flex', gap: 25 }}>
             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'flex-start', height: 60 }}>
                 <View style={{ width: '20%', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                    <Image style={styles.roundedImage} source={{ uri: photoURL }} />
+                    <Image style={styles.roundedImage} source={{ uri: photoURL as string}} />
                 </View>
                 <View style={{ width: '80%', height: '100%' }}>
                     <Picker

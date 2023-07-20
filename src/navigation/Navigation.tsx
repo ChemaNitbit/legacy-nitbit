@@ -10,9 +10,9 @@ import WelcomeScreen from '../screens/welcome/WelcomeScreen';
 import SplashScreen from '../screens/Splash/SplashScreen';
 import { User, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebase-config';
-import NbToolbar from '../components/nb-toolbar/NbToolbar';
 import NewPost from '../screen-modals/new-post-screen/new-post.screen';
 import NbToolbarModal from '../components/nb-toolbar-modal/NbToolbarModal';
+import ChatScreen from '../screen-modals/chat-screen/chat.screen';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,8 +50,7 @@ const Navigation = () => {
                     <Stack.Screen name="Home" component={HomeScreen}
                         options={{
                             title: '',
-                            header: (props) =>
-                                <NbToolbar {...props} back={false}></NbToolbar>
+                            headerShown: false
                         }}
                     ></Stack.Screen>
                 </Stack.Group>
@@ -60,6 +59,10 @@ const Navigation = () => {
                         title: 'Nueva publicación',
                         header: (props) =>
                             <NbToolbarModal {...props}></NbToolbarModal>
+                    }} />
+                    <Stack.Screen name="ChatModal" component={ChatScreen} options={{
+                        title: 'Nueva publicación',
+                        headerShown: false
                     }} />
                 </Stack.Group>
             </Stack.Navigator>

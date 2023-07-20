@@ -7,20 +7,20 @@ import { styles } from './login.styles';
 
 // Custom Components
 import NBButton from '../../../components/nb-button/NBButton';
-
-// Firebase
-import { auth } from '../../../../firebase-config';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { ICredentials } from '../../../interfaces/credentials.interface';
+import { onLogin } from '../../../services/auth.service';
 
 const LoginScreen = ({ navigation }: any) => {
+
     const [email, onChangeEmail] = React.useState('');
     const [password, onChangePassword] = React.useState('');
 
     const handleLogin = () => {
-        signInWithEmailAndPassword(auth, email, password).then(res => {
-            // console.log("SignIn > user: ", res.user);
-            navigation.navigate('Splash');
-        }).catch(error => console.log("SignIn > Error: ", error));
+        const credentials: ICredentials = {
+            email, password
+        }
+
+        onLogin(credentials, navigation);
     }
 
     return (
@@ -43,7 +43,5 @@ const LoginScreen = ({ navigation }: any) => {
         </SafeAreaView>
     );
 }
-
-// const 
 
 export default LoginScreen;

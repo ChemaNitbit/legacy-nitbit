@@ -5,12 +5,7 @@ import { TextInput } from '@react-native-material/core';
 
 // Custom Components
 import NBButton from '../../../components/nb-button/NBButton';
-
-//Firebase
-import { firestoreDB } from '../../../../firebase-config';
-import { setDoc, doc } from 'firebase/firestore';
-import { auth } from '../../../../firebase-config';
-import { createUserWithEmailAndPassword, updateProfile, getAuth, User } from 'firebase/auth';
+import { onSignUp } from '../../../services/auth.service';
 
 const SignupScreen = ({ navigation }: any) => {
 
@@ -23,23 +18,15 @@ const SignupScreen = ({ navigation }: any) => {
     const [isSelected, setSelection] = useState(false);
 
     const handleSignUp = () => {
-
         const userData = {
-            name, lastname, email, birthdate
+            name,
+            email, 
+            password,
+            lastname,
+            birthdate
         }
 
-        createUserWithEmailAndPassword(auth, email, password).then((response) => {
-            // console.log("SignUp > uid:", response.user.uid);
-            const docRef = doc(firestoreDB, 'users', response.user.uid);
-            return setDoc(docRef, userData);
-        }).then(createUserResponse => {
-            // console.log("AddDoc > user: ", createUserResponse);
-            const authUser = getAuth();
-            return updateProfile((authUser.currentUser as User), { displayName: name })
-        }).then(updateProfileResponse => {
-            // console.log("updateProfile > updateProfileResponse: ", updateProfileResponse);
-            navigation.navigate('Login')
-        }).catch(error => console.error("SignUp > Error: ", error));
+        onSignUp(userData, navigation);
     }
 
     return (

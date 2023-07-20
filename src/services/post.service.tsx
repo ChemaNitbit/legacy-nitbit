@@ -1,8 +1,8 @@
 import { Post } from "../@types/post.type";
 
 import { firestoreDB } from "../../firebase-config";
-import { Firestore, collection, doc, getDoc, getDocs, onSnapshot } from "firebase/firestore";
-import { User } from "../@types/user.type";
+import { Firestore, addDoc, collection, doc, getDoc, getDocs, onSnapshot, orderBy, query } from "firebase/firestore";
+import { UserType } from "../@types/user.type";
 import { POSTS, USERS } from "./collections";
 
 export const fetchPosts = async (): Promise<Post[]> => {
@@ -49,12 +49,12 @@ export const fetchPostsRealtime = async () => {
     const postIds = new Set<string>();
     const collectionRef = collection(firestoreDB, POSTS);
 
-    const querySnapshot = await getDocs(collectionRef);
+    const byQuery = query(collectionRef, orderBy('createAt', 'desc'));
+
+    const querySnapshot = await getDocs(byQuery);
 
     const iterate = async () => {
-        console.log("Data: ", querySnapshot.docs);
         for (const post of querySnapshot.docs) {
-            console.log("> ", post.data());
             const userDetails = await fetchUserById(post.data().idUser);
             const postDetails = {
                 id: post.id,
@@ -69,7 +69,12 @@ export const fetchPostsRealtime = async () => {
 
     await iterate();
 
-    const unsubscribe = onSnapshot(collectionRef, async (snapshot) => {
+    const unsubscribe = onSnapshot(collectionRef, { includeMetadataChanges: true }, async (snapshot) => {
+
+        const source = snapshot.metadata.fromCache ? 'Local Cache' : 'Server';
+
+        console.log("from: ", source);
+
         snapshot.docChanges().forEach(async (change) => {
             if (change.type === "added") {
                 const post = change.doc;
@@ -90,12 +95,22 @@ export const fetchPostsRealtime = async () => {
     });
 
     return new Promise<Post[]>((resolve) => {
+        unsubscribe();
         resolve(posts);
     });
 };
 
-export const fetchUserById = async (id: string): Promise<User | null> => {
+export const fetchUserById = async (id: string): Promise<UserType | null> => {
     const docRef = await doc(firestoreDB, USERS, id);
     const user = await getDoc(docRef);
-    return user.exists() ? user.data() as User : null;
+    return user.exists() ? user.data() as UserType : null;
+}
+
+export const addPost = (post: Post): Promise<void> => {
+    const postsRef = collection(firestoreDB, 'posts');
+    return new Promise<void>((resolve, reject) => {
+        addDoc(postsRef, post).then((response) => {
+            resolve()
+        }).catch((error) => reject(error));
+    })
 }

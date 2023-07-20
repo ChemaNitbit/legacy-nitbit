@@ -4,8 +4,8 @@ import { Flex, Box } from "@react-native-material/core";
 import { Image, Text } from 'react-native';
 import NbProfilePhoto from '../nb-profile-photo/NbProfilePhoto';
 
-
 const NbHeader = () => {
+
     return (
         <Flex direction='row' grow={1} shrink={1}>
             <Box h={'100%'} style={{ flex: 1 }} >
@@ -22,7 +22,7 @@ const NbHeader = () => {
                 <Flex fill justify='center' items='center'>
                     <Box style={{ flex: 8, display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
                         {/* <Image source={require('../../../assets/logo/profile.jpg')} style={styles.roundedImage} /> */}
-                        <NbProfilePhoto />
+                        <NbProfilePhoto/>
                     </Box>
                     <Box style={{ flex: 2 }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 18, fontFamily: 'Roboto', lineHeight: 20, textAlign: 'left' }}>Damian Zamora</Text>

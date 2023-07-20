@@ -9,34 +9,32 @@ import NbList from '../../../components/nb-list/NbList';
 import NbHeader from '../../../components/nb-header/NbHeader';
 
 // Material Components
-import { FAB, PaperProvider, Portal } from 'react-native-paper';
-import { User, getAuth } from 'firebase/auth';
+import { Button, FAB, PaperProvider, Portal } from 'react-native-paper';
+import { useCurrentUser } from '../../../hooks/useCurrentUser';
+import NBButton from '../../../components/nb-button/NBButton';
 
 const HomeTab = ({ navigation }: any): JSX.Element => {
+
+    const { currentUser } = useCurrentUser();
+
     const isScreenFocused = useIsFocused();
+
     const [fabIsOpen, setFabIsOpen] = React.useState(false);
-    const [currentUser, setCurrentUser] = React.useState<User | null>(null);
-
-    React.useEffect(() => {
-        const user = getAuth().currentUser as User;
-
-        setCurrentUser(user);
-    }, []);
 
     return (
         <PaperProvider>
 
-            <View>
+            <View style={{ display: 'flex', flexDirection: 'column', gap: 5, borderWidth: 1, borderColor: 'red', height: '100%' }}>
                 <SafeAreaView style={styles.screenContainer}>
                     <View style={styles.headerContainer}>
                         <NbHeader></NbHeader>
                     </View>
 
-                    <View style={{ flex: 3 }}>
+                    <View style={{ flex: 2 }}>
                         <NbList></NbList>
                     </View>
 
-                    <Portal>
+                    {/* <Portal>
                         <FAB.Group
                             color='#fff'
                             fabStyle={{ backgroundColor: '#5AB0D6' }}
@@ -54,7 +52,6 @@ const HomeTab = ({ navigation }: any): JSX.Element => {
                                     color: '#000',
                                     label: 'Publicación',
                                     onPress: () => {
-                                        console.log('Nueva publicación');
                                         navigation.navigate('NewPostModal', { photoURL: 'https://i.pinimg.com/736x/9d/47/f1/9d47f1b987fa26a6fc6e843032662b4b.jpg', userId: currentUser?.uid });
                                     }
                                 },
@@ -70,8 +67,13 @@ const HomeTab = ({ navigation }: any): JSX.Element => {
                                 }
                             ]}
                         />
-                    </Portal>
+                    </Portal> */}
                 </SafeAreaView>
+                <View style={{ flex: 1, backgroundColor: '#fff', borderWidth: 1, borderColor: 'green', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <NBButton size={50} onPress={() => {
+                        navigation.navigate('NewPostModal');
+                    }} title={'Shout'}></NBButton>
+                </View>
             </View>
         </PaperProvider>
 
@@ -83,6 +85,7 @@ export const styles = StyleSheet.create({
         height: '100%',
         display: 'flex',
         backgroundColor: 'white',
+        flex: 9
     },
     scrollContainer: {
         width: '100%',
