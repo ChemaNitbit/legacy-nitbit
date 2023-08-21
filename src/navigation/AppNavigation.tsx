@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
+import 'firebase/auth';
+import '../shared/infrastructure/firebase-config';
 
 // screens
 import LoginScreen from '../screens/Auth/login/LoginScreen';
 import SignupScreen from '../screens/Auth/signup/SignupScreen';
-import HomeScreen from '../screens/home/HomeScreen';
+import MainNavigation from './navigators/MainNavigation';
 import WelcomeScreen from '../screens/welcome/WelcomeScreen';
 import SplashScreen from '../screens/Splash/SplashScreen';
-import {User, onAuthStateChanged} from 'firebase/auth';
-import {auth} from '../shared/infrastructure/firebase-config';
 import NewPost from '../screen-modals/new-post-screen/new-post.screen';
 import NbToolbarModal from '../components/nb-toolbar-modal/NbToolbarModal';
 import ChatScreen from '../screen-modals/chat-screen/chat.screen';
@@ -17,22 +17,9 @@ import ChatScreen from '../screen-modals/chat-screen/chat.screen';
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
-  let initialNavigation: string = 'Welcome';
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user: User | null) => {
-      if (user) {
-        // console.log("existe sesión activa: ", user);
-        initialNavigation = 'Home';
-      } else {
-        // console.log("no existe sesión activa: ");
-      }
-    });
-  }, []);
-
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={initialNavigation}>
+      <Stack.Navigator initialRouteName="Welcome">
         <Stack.Group>
           <Stack.Screen
             name="Welcome"
@@ -56,13 +43,12 @@ const Navigation = () => {
             component={SplashScreen}
             options={{headerShown: false}}
           />
+        </Stack.Group>
+        <Stack.Group>
           <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              title: '',
-              headerShown: false,
-            }}
+            name="MainNavigation"
+            component={MainNavigation}
+            options={{headerShown: false}}
           />
         </Stack.Group>
         <Stack.Group screenOptions={{presentation: 'modal'}}>

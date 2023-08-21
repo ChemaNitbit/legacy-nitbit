@@ -10,7 +10,7 @@ const SplashScreen = ({navigation}: any): JSX.Element => {
   const user = auth.currentUser;
 
   setTimeout(() => {
-    navigation.navigate('Home');
+    navigation.navigate('MainNavigation');
   }, 1600);
 
   return (

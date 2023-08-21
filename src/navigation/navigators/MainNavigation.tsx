@@ -1,17 +1,17 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import HomeTab from './tabs/HomeTab';
+import HomeTab from '../../screens/home/tabs/HomeTab';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import MessageTempTab from './tabs/MessageTempTab';
-import MessageFixedTab from './tabs/MessageFixedTab';
+import MessageTempTab from '../../screens/home/tabs/MessageTempTab';
+import MessageFixedTab from '../../screens/home/tabs/MessageFixedTab';
 
 import {AppProvider} from '../../context/AppContext';
 import NbToolbar from '../../components/nb-toolbar/NbToolbar';
 
 const Tab = createBottomTabNavigator();
 
-const HomeScreen = (): JSX.Element => {
+const MainNavigation = (): JSX.Element => {
   return (
     // <AppProvider>
     <Tab.Navigator initialRouteName="HomeTab">
@@ -55,4 +55,4 @@ const HomeScreen = (): JSX.Element => {
   );
 };
 
-export default HomeScreen;
+export default MainNavigation;
