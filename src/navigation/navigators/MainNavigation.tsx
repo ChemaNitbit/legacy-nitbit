@@ -1,24 +1,32 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeTab from '../../screens/home/tabs/HomeTab';
-
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MessageTempTab from '../../screens/home/tabs/MessageTempTab';
 import MessageFixedTab from '../../screens/home/tabs/MessageFixedTab';
-
-import {AppProvider} from '../../context/AppContext';
 import NbToolbar from '../../components/nb-toolbar/NbToolbar';
+import {NbTabBar} from '../../components/layout/NbTabBar';
 
 const Tab = createBottomTabNavigator();
 
 const MainNavigation = (): JSX.Element => {
   return (
     // <AppProvider>
-    <Tab.Navigator initialRouteName="HomeTab">
+    <Tab.Navigator initialRouteName="HomeTab" tabBar={NbTabBar}>
       <Tab.Screen
         name="MessageTempTab"
         component={MessageTempTab}
-        options={{title: 'Bit temporales', headerShown: false}}
+        options={{
+          title: 'Bit temporales',
+          headerShown: false,
+          tabBarIcon: props => (
+            <MaterialCommunityIcons
+              name="message-text-outline"
+              color={'black'}
+              size={30}
+            />
+          ),
+        }}
       />
       <Tab.Screen
         name="HomeTab"
