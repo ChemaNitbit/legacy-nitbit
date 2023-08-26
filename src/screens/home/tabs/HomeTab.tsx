@@ -1,40 +1,46 @@
 import * as React from 'react';
-import { SafeAreaView, View, StyleSheet } from 'react-native';
+import {SafeAreaView, View, StyleSheet} from 'react-native';
 
 // Navigation
-import { useIsFocused } from '@react-navigation/native';
+import {useIsFocused} from '@react-navigation/native';
 
 // Custom Components
 import NbList from '../../../components/nb-list/NbList';
 import NbHeader from '../../../components/nb-header/NbHeader';
 
 // Material Components
-import { Button, FAB, PaperProvider, Portal } from 'react-native-paper';
-import { useCurrentUser } from '../../../hooks/useCurrentUser';
+import {Button, FAB, PaperProvider, Portal} from 'react-native-paper';
+import {useCurrentUser} from '../../../hooks/useCurrentUser';
 import NBButton from '../../../components/nb-button/NBButton';
 
-const HomeTab = ({ navigation }: any): JSX.Element => {
+const HomeTab = ({navigation}: any): JSX.Element => {
+  const {currentUser} = useCurrentUser();
 
-    const { currentUser } = useCurrentUser();
+  const isScreenFocused = useIsFocused();
 
-    const isScreenFocused = useIsFocused();
+  const [fabIsOpen, setFabIsOpen] = React.useState(false);
 
-    const [fabIsOpen, setFabIsOpen] = React.useState(false);
+  return (
+    <PaperProvider>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 5,
+          borderWidth: 1,
+          borderColor: 'red',
+          height: '100%',
+        }}>
+        <SafeAreaView style={styles.screenContainer}>
+          <View style={styles.headerContainer}>
+            <NbHeader />
+          </View>
 
-    return (
-        <PaperProvider>
+          <View style={{flex: 2}}>
+            <NbList />
+          </View>
 
-            <View style={{ display: 'flex', flexDirection: 'column', gap: 5, borderWidth: 1, borderColor: 'red', height: '100%' }}>
-                <SafeAreaView style={styles.screenContainer}>
-                    <View style={styles.headerContainer}>
-                        <NbHeader></NbHeader>
-                    </View>
-
-                    <View style={{ flex: 2 }}>
-                        <NbList></NbList>
-                    </View>
-
-                    {/* <Portal>
+          {/* <Portal>
                         <FAB.Group
                             color='#fff'
                             fabStyle={{ backgroundColor: '#5AB0D6' }}
@@ -68,43 +74,55 @@ const HomeTab = ({ navigation }: any): JSX.Element => {
                             ]}
                         />
                     </Portal> */}
-                </SafeAreaView>
-                <View style={{ flex: 1, backgroundColor: '#fff', borderWidth: 1, borderColor: 'green', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <NBButton size={50} onPress={() => {
-                        navigation.navigate('NewPostModal');
-                    }} title={'Shout'}></NBButton>
-                </View>
-            </View>
-        </PaperProvider>
-
-    )
-}
+        </SafeAreaView>
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: '#fff',
+            borderWidth: 1,
+            borderColor: 'green',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <NBButton
+            size={50}
+            onPress={() => {
+              navigation.navigate('NewPostModal');
+            }}
+            title={'Shout'}
+          />
+        </View>
+      </View>
+    </PaperProvider>
+  );
+};
 
 export const styles = StyleSheet.create({
-    screenContainer: {
-        height: '100%',
-        display: 'flex',
-        backgroundColor: 'white',
-        flex: 9
-    },
-    scrollContainer: {
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column'
-    },
-    headerContainer: {
-        width: '100%',
-        height: 180,
-        flex: 1
-    },
-    card: {
-        display: 'flex',
-        flexDirection: 'column',
-        width: '87%',
-        height: 'auto',
-        backgroundColor: '#ffffff',
-        gap: 25
-    }
+  screenContainer: {
+    height: '100%',
+    display: 'flex',
+    backgroundColor: 'white',
+    flex: 9,
+  },
+  scrollContainer: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  headerContainer: {
+    width: '100%',
+    height: 180,
+    flex: 1,
+  },
+  card: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '87%',
+    height: 'auto',
+    backgroundColor: '#ffffff',
+    gap: 25,
+  },
 });
 
 export default HomeTab;
