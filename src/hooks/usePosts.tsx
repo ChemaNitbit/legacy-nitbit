@@ -1,25 +1,21 @@
-import { useEffect, useState } from "react"
-import { fetchPostsRealtime } from "../services/post.service"
-import { Post } from "../@types/post.type";
+import {useEffect, useState} from 'react';
+import {fetchPostsRealtime} from '../services/post.service';
+import {Post} from '../@types/post.type';
 
 export const useFetchPosts = () => {
-    const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
 
-    const [isLoadingPosts, setLoadingPosts] = useState(true);
+  const [isLoadingPosts, setLoadingPosts] = useState(true);
 
-    useEffect(() => {
-        const fetchDate = async () => {
+  useEffect(() => {
+    const fetchDate = async () => {
+      fetchPostsRealtime()
+        .then((posts: Post[]) => setPosts(posts.length ? posts : []))
+        .finally(() => setLoadingPosts(false));
+    };
 
-            fetchPostsRealtime()
-                .then((posts: Post[]) => setPosts(posts.length ? posts : []))
-                .finally(() => setLoadingPosts(false));
+    // fetchDate();
+  }, []);
 
-        }
-
-        // fetchDate();
-
-    }, []);
-
-    return { posts, isLoadingPosts };
-}
-
+  return {posts, isLoadingPosts};
+};

@@ -1,32 +1,41 @@
-import { query, collection, where, onSnapshot, QuerySnapshot, getDocs } from "firebase/firestore"
-import { auth, firestoreDB } from "../../firebase-config";
-import { ChatType } from "../@types/chat.type";
+import {
+  query,
+  collection,
+  where,
+  onSnapshot,
+  QuerySnapshot,
+  getDocs,
+} from 'firebase/firestore';
+import {auth, firestoreDB} from '../shared/infrastructure/firebase-config';
+import {ChatType} from '../@types/chat.type';
 
+export const fetchAllChatsByCurrentUserId = async (
+  currentId: string,
+): Promise<ChatType[]> => {
+  const q = query(
+    collection(firestoreDB, 'chats'),
+    where('senderId', '==', auth.currentUser?.uid),
+  );
 
-export const fetchAllChatsByCurrentUserId = async (currentId: string): Promise<ChatType[]> => {
-    
+  const querynapshot = await new Promise<QuerySnapshot>((resolve, reject) => {
+    const unsubscribe = onSnapshot(q, resolve, reject);
+  });
 
-    const q = query(collection(firestoreDB, 'chats'), where('senderId', '==', auth.currentUser?.uid));
+  console.log('querysnapshot: ', querynapshot.docs);
 
-    const querynapshot = await new Promise<QuerySnapshot>((resolve, reject) => {
-        const unsubscribe = onSnapshot(q, resolve, reject);
-    });
+  const chats: ChatType[] = querynapshot.docs.map(doc => {
+    const getMessages = async () => {
+      const messages = await getDocs(
+        collection(firestoreDB, 'chats', doc.id, 'messages'),
+      );
 
-        console.log("querysnapshot: ", querynapshot.docs);
+      console.log(`${doc.id} messages: `, messages.docs);
+    };
 
-        const chats: ChatType[] = querynapshot.docs.map((doc) => {
-            
-            const getMessages = async () => {
-                const messages = await getDocs(collection(firestoreDB, 'chats', doc.id, 'messages'));
+    getMessages();
 
-                console.log(`${doc.id} messages: `, messages.docs);
-            }
+    return {id: doc.id, ...doc.data()} as ChatType;
+  });
 
-            getMessages();
-        
-            return {id: doc.id, ...doc.data()} as ChatType 
-        
-        });
-
-        return chats;
-}
+  return chats;
+};

@@ -8,7 +8,7 @@
 import React from 'react';
 
 import Navigation from './navigation/Navigation';
-import { AppProvider } from './context/AppContext';
+import {AppProvider} from './context/AppContext';
 
 const App = (): JSX.Element => {
   return (
@@ -16,6 +16,6 @@ const App = (): JSX.Element => {
       <Navigation />
     </AppProvider>
   );
-}
+};
 
 export default App;
