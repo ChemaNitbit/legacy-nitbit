@@ -12,8 +12,29 @@ const MainNavigation = (): JSX.Element => {
   return (
     <Tab.Navigator initialRouteName="HomeTab" tabBar={NbTabBar}>
       <Tab.Screen
-        name="MessageTempTab"
+        name="OthersTab"
         component={MessageTempTab}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="MessagesTab"
+        component={MessageTempTab}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="ProfileTab"
+        component={HomeTab}
+        options={{
+          header: props => <NbToolbar {...props} back={false} />,
+        }}
+      />
+      <Tab.Screen
+        name="GeoFencesTab"
+        component={MessageFixedTab}
         options={{
           headerShown: false,
         }}
@@ -23,13 +44,6 @@ const MainNavigation = (): JSX.Element => {
         component={HomeTab}
         options={{
           header: props => <NbToolbar {...props} back={false} />,
-        }}
-      />
-      <Tab.Screen
-        name="MessageFixedTab"
-        component={MessageFixedTab}
-        options={{
-          headerShown: false,
         }}
       />
     </Tab.Navigator>

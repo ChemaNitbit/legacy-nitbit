@@ -1,88 +1,33 @@
 import React from 'react';
-import {View, TouchableOpacity, StyleSheet, Image} from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {View, TouchableOpacity} from 'react-native';
+import {TAB_ICONS} from './constants/TAB_ICONS';
+import {styles} from './constants/styles';
+import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 
-const TabIcon = ({selected}: any) => {
+const TabIcon = ({selected, tabName}: {selected: boolean; tabName: string}) => {
   return (
     <View style={[styles.tabIcon, selected && styles.selectedTab]}>
-      <MaterialCommunityIcons
-        name="message-text-outline"
-        color={'black'}
-        size={30}
-      />
+      {TAB_ICONS[tabName]}
     </View>
   );
 };
 
-export const NbTabBar = ({state, descriptors, navigation}) => {
+export const NbTabBar = ({state, navigation}: BottomTabBarProps) => {
   return (
     <View style={styles.tabBar}>
       {state.routes.map((route, index) => {
-        const {options} = descriptors[route.key];
+        const tabName: string = route.name;
         const isFocused = state.index === index;
-
-        let icon;
-
-        if (index === 2) {
-          // Special handling for the 3rd option (user avatar)
-          icon = <View style={styles.avatarContainer} />;
-        } else {
-          // Other icons
-          icon = (
-            <MaterialCommunityIcons
-              name="message-text-outline"
-              color={'black'}
-              size={30}
-            />
-          ); // Replace with your actual icon component
-        }
 
         return (
           <TouchableOpacity
             key={index}
             onPress={() => navigation.navigate(route.name)}
             style={styles.tabButton}>
-            <TabIcon icon={icon} selected={isFocused} />
+            <TabIcon selected={isFocused} tabName={tabName} />
           </TouchableOpacity>
         );
       })}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  tabBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: 'white', // Adjust as needed
-  },
-  tabButton: {
-    flex: 1,
-    alignItems: 'center',
-    paddingVertical: 10,
-  },
-  tabIcon: {
-    width: 24,
-    height: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  selectedTab: {
-    backgroundColor: 'green', // Adjust as needed
-    borderRadius: 20, // Half of the icon height
-  },
-  avatarContainer: {
-    width: 28,
-    height: 28,
-    borderColor: 'green', // Adjust as needed
-    borderWidth: 2,
-    borderRadius: 14, // Half of the avatar size
-    overflow: 'hidden',
-  },
-  avatarImage: {
-    width: 24,
-    height: 24,
-    resizeMode: 'cover',
-  },
-});
