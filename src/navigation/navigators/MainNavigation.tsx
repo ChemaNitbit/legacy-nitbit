@@ -25,13 +25,7 @@ const MainNavigation = (): JSX.Element => {
           headerShown: false,
         }}
       />
-      <Tab.Screen
-        name="ProfileTab"
-        component={HomeTab}
-        options={{
-          header: props => <NbToolbar {...props} back={false} />,
-        }}
-      />
+      <Tab.Screen name="ProfileTab" component={HomeTab} />
       <Tab.Screen
         name="GeoFencesTab"
         component={MessageFixedTab}
