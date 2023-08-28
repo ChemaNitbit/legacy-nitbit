@@ -6,7 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
-    "lint:changed": "eslint $(git diff --name-only | grep '.*\\.jsx\\.ts\\.tsx\\?$' | xargs)",
+    "lint:changed": "eslint --fix $(git diff --name-only HEAD | xargs) --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --fix",
     "start": "react-native start",
     "test": "jest",
