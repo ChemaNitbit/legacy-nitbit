@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
-import {TAB_ICONS} from './constants/TAB_ICONS';
-import {styles} from './constants/styles';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
+import {styles} from './constants/styles';
+import {TAB_ICONS} from './constants/TAB_ICONS';
 
 const TabIcon = ({selected, tabName}: {selected: boolean; tabName: string}) => {
   return (
