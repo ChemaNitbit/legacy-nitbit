@@ -6,6 +6,7 @@ import {PaperProvider} from 'react-native-paper';
 export function Layout() {
   console.log('Foo');
   console.log('other console');
+  console.log('foo')
   return (
     <PaperProvider>
       <View style={{width: '100%'}}>
