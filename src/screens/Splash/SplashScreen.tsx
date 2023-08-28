@@ -3,7 +3,7 @@ import {getAuth} from 'firebase/auth';
 import React from 'react';
 import {Image} from 'react-native';
 import {StyleSheet} from 'react-native';
-import {View, Text} from 'react-native';
+import {Text} from 'react-native';
 
 const SplashScreen = ({navigation}: any): JSX.Element => {
   const auth = getAuth();
