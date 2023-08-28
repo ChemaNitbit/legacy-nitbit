@@ -13,6 +13,8 @@ import ChatScreen from '../screen-modals/chat-screen/chat.screen';
 
 const Stack = createNativeStackNavigator();
 
+const ToolBarModal = (props: any) => <NbToolbarModal {...props} />;
+
 const Navigation = () => {
   return (
     <NavigationContainer>
@@ -54,7 +56,7 @@ const Navigation = () => {
             component={NewPost}
             options={{
               title: 'Nueva publicación',
-              header: props => <NbToolbarModal {...props} />,
+              header: ToolBarModal,
             }}
           />
           <Stack.Screen

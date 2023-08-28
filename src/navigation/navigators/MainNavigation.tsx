@@ -7,6 +7,7 @@ import MessageTempTab from '../../screens/home/tabs/MessageTempTab';
 import MessageFixedTab from '../../screens/home/tabs/MessageFixedTab';
 
 const Tab = createBottomTabNavigator();
+const ToolBar = (props: any) => <NbToolbar {...props} back={false} />;
 
 const MainNavigation = (): JSX.Element => {
   return (
@@ -37,7 +38,7 @@ const MainNavigation = (): JSX.Element => {
         name="HomeTab"
         component={HomeTab}
         options={{
-          header: props => <NbToolbar {...props} back={false} />,
+          header: ToolBar,
         }}
       />
     </Tab.Navigator>
