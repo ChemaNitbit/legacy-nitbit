@@ -6,9 +6,12 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
+    "lint-staged": "lint-staged",
+    "lint:changed": "git diff --name-only origin/develop...HEAD | grep -E '\\.(js|jsx|ts|tsx)$' | xargs -I {} sh -c 'test -f {} && eslint {}' --",
     "lint:fix": "eslint . --fix",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@react-native-community/checkbox": "^0.5.15",
@@ -40,7 +43,9 @@
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.2.1",
     "eslint": "^8.19.0",
+    "husky": "^8.0.0",
     "jest": "^29.2.1",
+    "lint-staged": "^14.0.1",
     "metro-react-native-babel-preset": "0.73.10",
     "prettier": "^2.4.1",
     "react-native-dotenv": "^3.4.9",
