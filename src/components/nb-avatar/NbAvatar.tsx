@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import {Image, ImageStyle} from 'react-native';
-import {IMAGE_DEFAULT} from '../../contants';
+import { Image, ImageStyle } from 'react-native';
+import { IMAGE_DEFAULT } from '../../contants';
 
 export interface AvatarProps {
   url: string | null;

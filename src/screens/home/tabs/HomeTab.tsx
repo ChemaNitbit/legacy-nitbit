@@ -1,18 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
-import {SafeAreaView, View, StyleSheet} from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 
 // Navigation
-import {useIsFocused} from '@react-navigation/native';
+import { useIsFocused } from '@react-navigation/native';
 
 // Custom Components
-import NbList from '../../../components/nb-list/NbList';
 import NbHeader from '../../../components/nb-header/NbHeader';
+import NbList from '../../../components/nb-list/NbList';
 
 // Material Components
-import {Button, FAB, PaperProvider, Portal} from 'react-native-paper';
-import {useCurrentUser} from '../../../hooks/useCurrentUser';
+import { PaperProvider, Text } from 'react-native-paper';
+import { NbUserBadge, NbUsersResent } from '../../../components';
 import NBButton from '../../../components/nb-button/NBButton';
+import { IMAGE_DEFAULT } from '../../../contants';
+import { useCurrentUser } from '../../../hooks/useCurrentUser';
+import { MOCK_LIST_USERS_RESENT } from '../../../mocks/list-user-resent.mock';
 
 const HomeTab = ({navigation}: any): JSX.Element => {
   const {currentUser} = useCurrentUser();
@@ -39,11 +42,18 @@ const HomeTab = ({navigation}: any): JSX.Element => {
 
           <View style={{flex: 2}}>
             <NbList />
+            <Text>aaaaaaaaaaa</Text>
+            <NbUserBadge
+              imgUser={IMAGE_DEFAULT}
+              name="Marjory"
+              lastName="Lopez"
+            />
+            <NbUsersResent listUser={MOCK_LIST_USERS_RESENT} size={32} />
           </View>
 
           {/* <Portal>
                         <FAB.Group
-                            color='#fff'
+                        color='#fff'
                             fabStyle={{ backgroundColor: '#5AB0D6' }}
                             visible={isScreenFocused}
                             open={fabIsOpen}
@@ -61,7 +71,7 @@ const HomeTab = ({navigation}: any): JSX.Element => {
                                     onPress: () => {
                                         navigation.navigate('NewPostModal', { photoURL: 'https://i.pinimg.com/736x/9d/47/f1/9d47f1b987fa26a6fc6e843032662b4b.jpg', userId: currentUser?.uid });
                                     }
-                                },
+                                  },
                                 {
                                     icon: 'file-image-outline',
                                     style: {
