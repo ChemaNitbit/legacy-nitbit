@@ -4,6 +4,7 @@ import {NbTabBar} from '../../components/layout/NbTabBar';
 import HomeTabNavigator from './HomeTabNavigator';
 import MessageTempTab from '../../screens/HomeTab/tabs/MessageTempTab';
 import MessageFixedTab from '../../screens/HomeTab/tabs/MessageFixedTab';
+import MessagesTabNavigator from './MessagesTabNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,7 +20,7 @@ const MainNavigation = (): JSX.Element => {
       />
       <Tab.Screen
         name="MessagesTab"
-        component={MessageTempTab}
+        component={MessagesTabNavigator}
         options={{
           headerShown: false,
         }}
