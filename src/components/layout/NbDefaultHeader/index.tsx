@@ -16,14 +16,20 @@ export const NbDefaultHeader = ({
   iconName,
   ...props
 }: NbDefaultHeaderProps) => {
+  const headerTitle = title || props.options.title;
+
   return (
     <Layout.NbHeader {...props}>
-      <View style={{display: 'flex', flexDirection: 'row', gap: 10}}>
-        <NBButton
-          iconName={iconName || getIconNameByRouteName(props.route.name)}
-        />
-        <Appbar.Content title={title || props.options.title} />
-      </View>
+      {headerTitle ? (
+        <View style={{display: 'flex', flexDirection: 'row', gap: 10}}>
+          <NBButton
+            iconName={iconName || getIconNameByRouteName(props.route.name)}
+          />
+          <Appbar.Content title={title || props.options.title} />
+        </View>
+      ) : (
+        <View />
+      )}
     </Layout.NbHeader>
   );
 };
