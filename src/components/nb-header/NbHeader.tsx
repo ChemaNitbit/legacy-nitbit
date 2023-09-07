@@ -4,6 +4,10 @@ import {Flex, Box} from '@react-native-material/core';
 import {Image, Text} from 'react-native';
 import NbProfilePhoto from '../nb-profile-photo/NbProfilePhoto';
 
+/**
+ * @deprecated Use the Layout.NbDefaultHeader instead.
+ * Or create a new one using the Layout.NbHeader component as a base.
+ */
 const NbHeader = () => {
   return (
     <Flex direction="row" grow={1} shrink={1}>

@@ -1,13 +1,11 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NbTabBar} from '../../components/layout/NbTabBar';
-import NbToolbar from '../../components/nb-toolbar/NbToolbar';
-import HomeTab from '../../screens/home/tabs/HomeTab';
-import MessageTempTab from '../../screens/home/tabs/MessageTempTab';
-import MessageFixedTab from '../../screens/home/tabs/MessageFixedTab';
+import HomeTabNavigator from './HomeTabNavigator';
+import MessageTempTab from '../../screens/HomeTab/tabs/MessageTempTab';
+import MessageFixedTab from '../../screens/HomeTab/tabs/MessageFixedTab';
 
 const Tab = createBottomTabNavigator();
-const ToolBar = (props: any) => <NbToolbar {...props} back={false} />;
 
 const MainNavigation = (): JSX.Element => {
   return (
@@ -26,7 +24,7 @@ const MainNavigation = (): JSX.Element => {
           headerShown: false,
         }}
       />
-      <Tab.Screen name="ProfileTab" component={HomeTab} />
+      <Tab.Screen name="ProfileTab" component={HomeTabNavigator} />
       <Tab.Screen
         name="GeoFencesTab"
         component={MessageFixedTab}
@@ -36,9 +34,9 @@ const MainNavigation = (): JSX.Element => {
       />
       <Tab.Screen
         name="HomeTab"
-        component={HomeTab}
+        component={HomeTabNavigator}
         options={{
-          header: ToolBar,
+          headerShown: false,
         }}
       />
     </Tab.Navigator>
