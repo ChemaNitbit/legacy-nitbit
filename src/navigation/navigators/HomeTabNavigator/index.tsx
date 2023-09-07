@@ -6,6 +6,7 @@ import {HomeHeader} from './HomeHeader';
 import {NotificationsScreen} from '../../../screens/HomeTab/NotificationsScreen';
 import {Layout} from '../../../components/layout';
 import {ConnectionRequestsScreen} from '../../../screens/HomeTab/ConnectionRequestsScreen';
+import {ChatScreen} from '../../../screens/MessagesTab/ChatScreen';
 
 const HomeTabStack = createNativeStackNavigator();
 
@@ -32,6 +33,13 @@ const HomeTabNavigator = (): JSX.Element => {
         component={ConnectionRequestsScreen}
         options={{
           title: 'Solicitudes',
+          header: Layout.NbDefaultHeader,
+        }}
+      />
+      <HomeTabStack.Screen
+        name="ChatScreen"
+        component={ChatScreen}
+        options={{
           header: Layout.NbDefaultHeader,
         }}
       />
