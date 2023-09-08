@@ -6,7 +6,8 @@
 const IconsPerRouteName: {[key in string]: string} = {
   NotificationsScreen: 'bell-outline',
   ConnectionRequestsScreen: 'account-circle-outline',
-  ChatScreen: 'chat-outline',
+  ChatsScreen: 'email-outline',
+  ChatSearcherScreen: 'magnify',
 };
 
 export const getIconNameByRouteName = (routeName: string): string => {
