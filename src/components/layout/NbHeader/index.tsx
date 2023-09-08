@@ -6,7 +6,7 @@ import {NbHeaderProps} from './NbHeader.types';
 import {LeftActionElement} from './LeftActionElement';
 
 export function NbHeader({
-  allowGoingBack = true,
+  allowGoingBack,
   leftAction,
   children,
   rightActions = [],
@@ -15,7 +15,10 @@ export function NbHeader({
   const {navigation, route, options, back} = props;
   const routeTitle = getHeaderTitle(options, route.name);
 
-  const showBackButton = back && allowGoingBack;
+  const backButtonAllowed = props.options.headerBackVisible !== false;
+
+  const showBackButton =
+    allowGoingBack === false ? false : back && backButtonAllowed;
 
   return (
     <Appbar.Header>
