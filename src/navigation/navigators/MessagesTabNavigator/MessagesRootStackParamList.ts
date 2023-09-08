@@ -6,4 +6,5 @@ export type MessagesRootStackParamList = {
   ChatsScreen?: {};
   ConnectionsChatsScreen?: {};
   GeoFencesChatsScreen?: {};
+  ChatSearcherScreen?: {};
 };

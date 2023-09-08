@@ -4,6 +4,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {ChatsScreen} from '../../../screens/MessagesTab/ChatsScreen';
 import {Layout} from '../../../components/layout';
 import {ChatScreen} from '../../../screens/MessagesTab/ChatScreen';
+import {MessagesHeader} from './MessagesHeader';
+import {ChatSearcherScreen} from '../../../screens/MessagesTab/ChatSearcherScreen';
 
 const MessagesTabStack = createNativeStackNavigator();
 
@@ -15,7 +17,7 @@ const MessagesTabNavigator = (): JSX.Element => {
         name="ChatsScreen"
         component={ChatsScreen}
         options={{
-          header: Layout.NbDefaultHeader,
+          header: MessagesHeader,
           title: 'Mensajes',
           headerBackVisible: false,
         }}
@@ -25,6 +27,14 @@ const MessagesTabNavigator = (): JSX.Element => {
         component={ChatScreen}
         options={{
           header: Layout.NbDefaultHeader,
+        }}
+      />
+      <MessagesTabStack.Screen
+        name="ChatSearcherScreen"
+        component={ChatSearcherScreen}
+        options={{
+          header: Layout.NbDefaultHeader,
+          title: 'Buscar',
         }}
       />
     </MessagesTabStack.Navigator>
