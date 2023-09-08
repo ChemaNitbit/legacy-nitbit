@@ -15,7 +15,8 @@ export function NbHeader({
   const {navigation, route, options, back} = props;
   const routeTitle = getHeaderTitle(options, route.name);
 
-  const showBackButton = back && allowGoingBack;
+  const showBackButton =
+    back && allowGoingBack && props.options.headerBackVisible;
 
   return (
     <Appbar.Header>
