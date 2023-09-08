@@ -5,6 +5,7 @@ import HomeTabNavigator from './HomeTabNavigator';
 import MessagesTabNavigator from './MessagesTabNavigator';
 import NewContentTabNavigator from './NewContentTabNavigator';
 import GeoFencesTabNavigator from './GeoFencesTabNavigator';
+import ProfileTabNavigator from './ProfileTabNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,7 +26,13 @@ const MainNavigation = (): JSX.Element => {
           headerShown: false,
         }}
       />
-      <Tab.Screen name="ProfileTab" component={HomeTabNavigator} />
+      <Tab.Screen
+        name="ProfileTab"
+        component={ProfileTabNavigator}
+        options={{
+          headerShown: false,
+        }}
+      />
       <Tab.Screen
         name="GeoFencesTab"
         component={GeoFencesTabNavigator}
