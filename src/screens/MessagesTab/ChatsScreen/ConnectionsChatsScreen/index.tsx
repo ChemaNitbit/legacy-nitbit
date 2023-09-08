@@ -5,7 +5,10 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {MessagesRootStackParamList} from '../../../../navigation/navigators/MessagesTabNavigator/MessagesRootStackParamList';
 
 export const ConnectionsChatsScreen = (
-  props: NativeStackScreenProps<MessagesRootStackParamList, 'ChatsScreen'>,
+  props: NativeStackScreenProps<
+    MessagesRootStackParamList,
+    'ConnectionsChatsScreen'
+  >,
 ): JSX.Element => {
   return (
     <PaperProvider>

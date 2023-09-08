@@ -5,7 +5,10 @@ import {MessagesRootStackParamList} from '../../../../navigation/navigators/Mess
 import {ChatsList} from '../ChatsList';
 
 export const GeoFencesChatsScreen = (
-  props: NativeStackScreenProps<MessagesRootStackParamList, 'ChatsScreen'>,
+  props: NativeStackScreenProps<
+    MessagesRootStackParamList,
+    'GeoFencesChatsScreen'
+  >,
 ): JSX.Element => {
   return (
     <PaperProvider>

@@ -4,7 +4,10 @@ import {MessagesRootStackParamList} from '../../../navigation/navigators/Message
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 export const ChatsList = (
-  props: NativeStackScreenProps<MessagesRootStackParamList, 'ChatsScreen'>,
+  props: NativeStackScreenProps<
+    MessagesRootStackParamList,
+    'ChatsScreen' | 'ConnectionsChatsScreen' | 'GeoFencesChatsScreen'
+  >,
 ): JSX.Element => {
   const goToChat = (chatId: string) => {
     props.navigation.navigate('ChatScreen', {chatId});
