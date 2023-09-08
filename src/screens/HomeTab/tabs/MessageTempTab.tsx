@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {View, Text, Image, KeyboardAvoidingView, FlatList} from 'react-native';
+import {View, Text, KeyboardAvoidingView, FlatList} from 'react-native';
 import {useCurrentUser} from '../../../hooks/useCurrentUser';
 import NbAvatar from '../../../components/nb-avatar/NbAvatar';
 
@@ -17,7 +17,7 @@ const MessageTempTab = ({navigation}: any) => {
 
   const {chats, isLoading} = useAllChats();
 
-  const {userFriends, isLoading: isLoadingUsers} = useAllUserFriends();
+  const {userFriends} = useAllUserFriends();
 
   return (
     <KeyboardAvoidingView

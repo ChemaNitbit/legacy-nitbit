@@ -10,11 +10,28 @@ import NbList from '../../../components/nb-list/NbList';
 import NbHeader from '../../../components/nb-header/NbHeader';
 
 // Material Components
-import {Button, FAB, PaperProvider, Portal} from 'react-native-paper';
+import {Button, FAB, PaperProvider, Portal, Text} from 'react-native-paper';
 import {useCurrentUser} from '../../../hooks/useCurrentUser';
 import NBButton from '../../../components/nb-button/NBButton';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-const HomeTab = ({navigation}: any): JSX.Element => {
+const HomeTabStack = createNativeStackNavigator();
+
+const HomeTab = (): JSX.Element => {
+  return (
+    <HomeTabStack.Navigator>
+      <HomeTabStack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </HomeTabStack.Navigator>
+  );
+};
+
+const HomeScreen = ({navigation}: any): JSX.Element => {
   const {currentUser} = useCurrentUser();
 
   const isScreenFocused = useIsFocused();
@@ -36,7 +53,6 @@ const HomeTab = ({navigation}: any): JSX.Element => {
           <View style={styles.headerContainer}>
             <NbHeader />
           </View>
-
           <View style={{flex: 2}}>
             <NbList />
           </View>
@@ -89,7 +105,7 @@ const HomeTab = ({navigation}: any): JSX.Element => {
           <NBButton
             size={50}
             onPress={() => {
-              navigation.navigate('NewPostModal');
+              navigation.navigate('NotificationsScreen');
             }}
             title={'Shout'}
           />
