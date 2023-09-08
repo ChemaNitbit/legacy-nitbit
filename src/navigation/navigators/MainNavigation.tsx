@@ -2,9 +2,9 @@ import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NbTabBar} from '../../components/layout/NbTabBar';
 import HomeTabNavigator from './HomeTabNavigator';
-import MessageTempTab from '../../screens/HomeTab/tabs/MessageTempTab';
 import MessageFixedTab from '../../screens/HomeTab/tabs/MessageFixedTab';
 import MessagesTabNavigator from './MessagesTabNavigator';
+import NewContentTabNavigator from './NewContentTabNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -12,8 +12,8 @@ const MainNavigation = (): JSX.Element => {
   return (
     <Tab.Navigator initialRouteName="HomeTab" tabBar={NbTabBar}>
       <Tab.Screen
-        name="OthersTab"
-        component={MessageTempTab}
+        name="NewContentTabNavigator"
+        component={NewContentTabNavigator}
         options={{
           headerShown: false,
         }}

@@ -3,7 +3,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {ICON_SIZE, AVATAR_SIZE} from './styles';
 
 export const TAB_ICONS: {[key in string]: ReactElement} = {
-  OthersTab: (
+  NewContentTabNavigator: (
     <MaterialCommunityIcons
       name="plus-circle-outline"
       size={ICON_SIZE}
