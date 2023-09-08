@@ -6,4 +6,5 @@ export type HomeRootStackParamList = {
   NotificationsScreen?: {};
   ConnectionRequestsScreen?: {};
   RequestsListScreen?: RequestsListScreenProps;
+  StoriesScreen?: {};
 };

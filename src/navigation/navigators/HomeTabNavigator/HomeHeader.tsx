@@ -1,13 +1,23 @@
 import React from 'react';
-import {NativeStackHeaderProps} from '@react-navigation/native-stack';
+import {
+  NativeStackHeaderProps,
+  NativeStackNavigationOptions,
+} from '@react-navigation/native-stack';
 import {Layout} from '../../../components/layout';
 import NBButton from '../../../components/nb-button/NBButton';
-import {Text} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 
-/**
- * Customize header for HomeTabNavigator
- */
-export const HomeHeader = (props: NativeStackHeaderProps): JSX.Element => {
+interface HomeHeaderProps extends NativeStackHeaderProps {
+  options: NativeStackNavigationOptions & {
+    onSearchPress?: () => void;
+  };
+}
+
+export const HomeHeader = (props: HomeHeaderProps): JSX.Element => {
+  const goToStories = () => {
+    props.navigation.navigate('StoriesScreen');
+  };
+
   return (
     <Layout.NbHeader
       leftAction="logo"
@@ -15,7 +25,14 @@ export const HomeHeader = (props: NativeStackHeaderProps): JSX.Element => {
       rightActions={[
         {
           key: 'SEARCH_BUTTON',
-          element: <NBButton onPress={() => null} iconName="magnify" />,
+          element: (
+            <NBButton
+              onPress={
+                props.options.onSearchPress && props.options.onSearchPress
+              }
+              iconName="magnify"
+            />
+          ),
         },
         {
           key: 'NOTIFICATIONS_BUTTON',
@@ -28,7 +45,7 @@ export const HomeHeader = (props: NativeStackHeaderProps): JSX.Element => {
         },
       ]}
       {...props}>
-      <Text>Friends' Stories</Text>
+      <Button onPress={goToStories}>Friends' Stories</Button>
     </Layout.NbHeader>
   );
 };
