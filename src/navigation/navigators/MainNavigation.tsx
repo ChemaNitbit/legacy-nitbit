@@ -2,9 +2,9 @@ import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NbTabBar} from '../../components/layout/NbTabBar';
 import HomeTabNavigator from './HomeTabNavigator';
-import MessageFixedTab from '../../screens/HomeTab/tabs/MessageFixedTab';
 import MessagesTabNavigator from './MessagesTabNavigator';
 import NewContentTabNavigator from './NewContentTabNavigator';
+import GeoFencesTabNavigator from './GeoFencesTabNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +28,7 @@ const MainNavigation = (): JSX.Element => {
       <Tab.Screen name="ProfileTab" component={HomeTabNavigator} />
       <Tab.Screen
         name="GeoFencesTab"
-        component={MessageFixedTab}
+        component={GeoFencesTabNavigator}
         options={{
           headerShown: false,
         }}
