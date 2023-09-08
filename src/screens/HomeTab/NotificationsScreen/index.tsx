@@ -11,6 +11,10 @@ export const NotificationsScreen = (
     props.navigation.navigate('ConnectionRequestsScreen');
   };
 
+  const goToPostDetail = (postId: string) => {
+    props.navigation.navigate('PostDetailScreen', {postId});
+  };
+
   return (
     <PaperProvider>
       <View>
@@ -24,10 +28,16 @@ export const NotificationsScreen = (
           Aprueba o rechaza las solicitudes
         </Button>
         <View style={{marginTop: 8}}>
-          <Button buttonColor="#999" textColor="#000">
+          <Button
+            buttonColor="#999"
+            textColor="#000"
+            onPress={() => goToPostDetail('01')}>
             Notificación de un post
           </Button>
-          <Button buttonColor="#999" textColor="#000">
+          <Button
+            buttonColor="#999"
+            textColor="#000"
+            onPress={() => goToPostDetail('02')}>
             Notificación de un comentario
           </Button>
         </View>

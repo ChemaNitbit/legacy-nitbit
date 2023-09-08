@@ -3,4 +3,8 @@ export type MessagesRootStackParamList = {
   ChatScreen?: {
     chatId?: string;
   };
+  ChatsScreen?: {};
+  ConnectionsChatsScreen?: {};
+  GeoFencesChatsScreen?: {};
+  ChatSearcherScreen?: {};
 };
