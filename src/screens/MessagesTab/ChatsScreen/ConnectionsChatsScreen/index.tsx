@@ -3,6 +3,7 @@ import {PaperProvider, Text} from 'react-native-paper';
 import {ChatsList} from '../ChatsList';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {MessagesRootStackParamList} from '../../../../navigation/navigators/MessagesTabNavigator/MessagesRootStackParamList';
+import {ConnectionUpdatesList} from './ConnectionUpdatesList';
 
 export const ConnectionsChatsScreen = (
   props: NativeStackScreenProps<
@@ -13,6 +14,7 @@ export const ConnectionsChatsScreen = (
   return (
     <PaperProvider>
       <Text>ConnectionsChatsScreen</Text>
+      <ConnectionUpdatesList />
       <ChatsList {...props} />
     </PaperProvider>
   );
