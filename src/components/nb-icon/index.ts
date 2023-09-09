@@ -1,6 +1,6 @@
 export * from './NbIcon';
 
-export const SIZES_ICON = {
+export const ICON_SIZE = {
   sm: 16,
   md: 24,
   lg: 32,
