@@ -1,23 +1,40 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 
 // Navigation
-import { useIsFocused } from '@react-navigation/native';
+import {useIsFocused} from '@react-navigation/native';
 
 // Custom Components
 import NbHeader from '../../../components/nb-header/NbHeader';
 import NbList from '../../../components/nb-list/NbList';
 
 // Material Components
-import { PaperProvider, Text } from 'react-native-paper';
-import { NbUserBadge, NbUsersResent } from '../../../components';
+import {Button, FAB, PaperProvider, Portal, Text} from 'react-native-paper';
+import {useCurrentUser} from '../../../hooks/useCurrentUser';
 import NBButton from '../../../components/nb-button/NBButton';
-import { IMAGE_DEFAULT } from '../../../contants';
-import { useCurrentUser } from '../../../hooks/useCurrentUser';
-import { MOCK_LIST_USERS_RESENT } from '../../../mocks/list-user-resent.mock';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NbUserBadge, NbUsersResent} from '../../../components';
+import {IMAGE_DEFAULT} from '../../../contants';
+import {MOCK_LIST_USERS_RESENT} from '../../../mocks/list-user-resent.mock';
 
-const HomeTab = ({navigation}: any): JSX.Element => {
+const HomeTabStack = createNativeStackNavigator();
+
+const HomeTab = (): JSX.Element => {
+  return (
+    <HomeTabStack.Navigator>
+      <HomeTabStack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </HomeTabStack.Navigator>
+  );
+};
+
+const HomeScreen = ({navigation}: any): JSX.Element => {
   const {currentUser} = useCurrentUser();
 
   const isScreenFocused = useIsFocused();
@@ -39,16 +56,8 @@ const HomeTab = ({navigation}: any): JSX.Element => {
           <View style={styles.headerContainer}>
             <NbHeader />
           </View>
-
           <View style={{flex: 2}}>
             <NbList />
-            <Text>aaaaaaaaaaa</Text>
-            <NbUserBadge
-              imgUser={IMAGE_DEFAULT}
-              name="Marjory"
-              lastName="Lopez"
-            />
-            <NbUsersResent listUser={MOCK_LIST_USERS_RESENT} size={32} />
           </View>
 
           {/* <Portal>
@@ -99,7 +108,7 @@ const HomeTab = ({navigation}: any): JSX.Element => {
           <NBButton
             size={50}
             onPress={() => {
-              navigation.navigate('NewPostModal');
+              navigation.navigate('NotificationsScreen');
             }}
             title={'Shout'}
           />
