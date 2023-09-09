@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AppProvider } from './context/AppContext';
+import {AppProvider} from './context/AppContext';
 import Navigation from './navigation/AppNavigation';
 
 const App = (): JSX.Element => {

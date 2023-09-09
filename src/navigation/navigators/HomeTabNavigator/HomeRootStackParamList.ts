@@ -7,6 +7,7 @@ export type HomeRootStackParamList = {
   ConnectionRequestsScreen?: {};
   RequestsListScreen?: RequestsListScreenProps;
   StoriesScreen?: {};
+  GenetalComponentes?: {};
   PostDetailScreen?: {
     postId: string;
   };
