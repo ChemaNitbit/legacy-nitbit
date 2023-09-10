@@ -90,13 +90,13 @@ export const fetchPostsRealtime = async () => {
     async snapshot => {
       const source = snapshot.metadata.fromCache ? 'Local Cache' : 'Server';
 
-      console.log('from: ', source);
+      // console.log('from: ', source);
 
       snapshot.docChanges().forEach(async change => {
         if (change.type === 'added') {
           const post = change.doc;
           if (!postIds.has(post.id)) {
-            console.log('> New post: ', post.data());
+            // console.log('> New post: ', post.data());
             const userDetails = await fetchUserById(post.data().idUser);
             const postDetails = {
               id: post.id,

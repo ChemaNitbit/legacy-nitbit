@@ -1,19 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
-import {SafeAreaView, View, StyleSheet} from 'react-native';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 
 // Navigation
 import {useIsFocused} from '@react-navigation/native';
 
 // Custom Components
-import NbList from '../../../components/nb-list/NbList';
 import NbHeader from '../../../components/nb-header/NbHeader';
+import NbList from '../../../components/nb-list/NbList';
 
 // Material Components
 import {Button, FAB, PaperProvider, Portal, Text} from 'react-native-paper';
 import {useCurrentUser} from '../../../hooks/useCurrentUser';
 import NBButton from '../../../components/nb-button/NBButton';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NbUserBadge, NbUsersResent} from '../../../components';
+import {IMAGE_DEFAULT} from '../../../contants';
+import {MOCK_LIST_USERS_RESENT} from '../../../mocks/list-user-resent.mock';
 
 const HomeTabStack = createNativeStackNavigator();
 
@@ -59,7 +62,7 @@ const HomeScreen = ({navigation}: any): JSX.Element => {
 
           {/* <Portal>
                         <FAB.Group
-                            color='#fff'
+                        color='#fff'
                             fabStyle={{ backgroundColor: '#5AB0D6' }}
                             visible={isScreenFocused}
                             open={fabIsOpen}
@@ -77,7 +80,7 @@ const HomeScreen = ({navigation}: any): JSX.Element => {
                                     onPress: () => {
                                         navigation.navigate('NewPostModal', { photoURL: 'https://i.pinimg.com/736x/9d/47/f1/9d47f1b987fa26a6fc6e843032662b4b.jpg', userId: currentUser?.uid });
                                     }
-                                },
+                                  },
                                 {
                                     icon: 'file-image-outline',
                                     style: {
