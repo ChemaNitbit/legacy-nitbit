@@ -1,14 +1,19 @@
-import {Flex} from '@react-native-material/core';
+import {Box, Flex} from '@react-native-material/core';
 import React from 'react';
 import {Text} from 'react-native-paper';
-import {NbUserBadge, NbUsersResent} from '../../../components';
+import {
+  NbInteractionPost,
+  NbUserBadge,
+  NbUsersResent,
+} from '../../../components';
 import {IMAGE_DEFAULT} from '../../../contants';
 import {MOCK_LIST_USERS_RESENT} from '../../../mocks/list-user-resent.mock';
 import {NbIcon} from '../../../components/nb-icon';
+import {NbCardPost} from '../../../components/nb-card-post/NbCardPost';
 
 export const GeneralComponentsScreen = () => {
   return (
-    <Flex items="center">
+    <Box>
       <Text
         style={{
           fontWeight: 'bold',
@@ -28,7 +33,31 @@ export const GeneralComponentsScreen = () => {
       <Text>
         {'\n'} Icon {'\n'}
       </Text>
-      <NbIcon name="magnify" size="sm" />
-    </Flex>
+      <Flex direction="row">
+        <NbIcon name="magnify" size="sm" />
+        <NbIcon name="magnify" size="md" />
+        <NbIcon name="magnify" size="lg" />
+      </Flex>
+
+      <Text>
+        {'\n'} interactions post {'\n'}
+      </Text>
+      <NbInteractionPost
+        liked={true}
+        countLike={2}
+        onPressLike={() => ({})}
+        countComment={2}
+        onPressComment={() => ({})}
+        countShare={4}
+        onPressShare={() => ({})}
+      />
+
+      <Text>
+        {'\n'} card {'\n'}
+      </Text>
+      <NbCardPost>
+        <Text>aaa</Text>
+      </NbCardPost>
+    </Box>
   );
 };

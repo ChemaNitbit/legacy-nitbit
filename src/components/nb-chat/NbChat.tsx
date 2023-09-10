@@ -12,7 +12,7 @@ type NbChatPropsType = {
 const NbChat: React.FC<NbChatPropsType> = ({messages}) => {
   const {currentUser} = useCurrentUser();
 
-  console.log('uid: ', currentUser?.uid);
+  // console.log('uid: ', currentUser?.uid);
 
   return (
     <View style={{width: '100%'}}>

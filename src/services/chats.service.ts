@@ -21,7 +21,7 @@ export const fetchAllChatsByCurrentUserId = async (
     const unsubscribe = onSnapshot(q, resolve, reject);
   });
 
-  console.log('querysnapshot: ', querynapshot.docs);
+  // console.log('querysnapshot: ', querynapshot.docs);
 
   const chats: ChatType[] = querynapshot.docs.map(doc => {
     const getMessages = async () => {
@@ -29,7 +29,7 @@ export const fetchAllChatsByCurrentUserId = async (
         collection(firestoreDB, 'chats', doc.id, 'messages'),
       );
 
-      console.log(`${doc.id} messages: `, messages.docs);
+      // console.log(`${doc.id} messages: `, messages.docs);
     };
 
     getMessages();
