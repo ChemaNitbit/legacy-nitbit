@@ -1,8 +1,12 @@
 import React from 'react';
-import {PaperProvider, Text} from 'react-native-paper';
+import {Text} from 'react-native-paper';
 import {MessagesRootStackParamList} from '../../../navigation/navigators/MessagesTabNavigator/MessagesRootStackParamList';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {FlatList, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
+
+export interface ChatsListProps {
+  virtualList: boolean;
+}
 
 export const ChatsList = (
   props: NativeStackScreenProps<
@@ -19,16 +23,12 @@ export const ChatsList = (
   };
 
   return (
-    <PaperProvider>
-      <FlatList
-        data={fakeChats(20)}
-        renderItem={chat => (
-          <TouchableOpacity onPress={() => goToChat(chat.item.id)}>
-            <Text>Chat</Text>
-          </TouchableOpacity>
-        )}
-        keyExtractor={(item, index) => index.toString()}
-      />
-    </PaperProvider>
+    <>
+      {fakeChats(80).map(chat => (
+        <TouchableOpacity key={chat.id} onPress={() => goToChat(chat.id)}>
+          <Text>Chat</Text>
+        </TouchableOpacity>
+      ))}
+    </>
   );
 };
