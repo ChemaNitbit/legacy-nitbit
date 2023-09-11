@@ -1,9 +1,17 @@
 import React from 'react';
 import {View} from 'react-native';
 import {StyleSheet} from 'react-native';
+import {useTheme} from 'react-native-paper';
 
 export const NbContainer = ({children}: {children: any}): JSX.Element => {
-  return <View style={styles.container}>{children}</View>;
+  const theme = useTheme();
+
+  return (
+    <View
+      style={{...styles.container, backgroundColor: theme.colors.background}}>
+      {children}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

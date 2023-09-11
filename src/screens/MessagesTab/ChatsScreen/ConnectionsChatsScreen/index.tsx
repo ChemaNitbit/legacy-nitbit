@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {ScrollView, Animated} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {SearchBar} from './SearchBar';
+import {NbSearchBar} from './SearchBar';
 import {ChatsList} from '../ChatsList';
 import {ConnectionUpdatesList} from './ConnectionUpdatesList';
 import {useListHiddingHeader} from '../../../../hooks/animations/useListHiddingHeader';
@@ -43,8 +43,11 @@ export const ConnectionsChatsScreen = (
             transform: [{translateY: translateYAnim}],
           },
         ]}>
-        <SearchBar />
-        <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+        <NbSearchBar />
+        <ScrollView
+          style={styles.scrollView}
+          onScroll={onScroll}
+          scrollEventThrottle={16}>
           <ChatsList {...props} />
         </ScrollView>
       </Animated.View>
@@ -64,7 +67,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   scrollView: {
-    flex: 1,
-    backgroundColor: 'white',
+    marginTop: 16,
   },
 });

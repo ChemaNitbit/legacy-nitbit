@@ -8,19 +8,17 @@ export const ChatsScreen = (): JSX.Element => {
   const TopTab = createMaterialTopTabNavigator();
 
   return (
-    <PaperProvider>
-      <TopTab.Navigator>
-        <TopTab.Screen
-          name="ConnectionsChatsScreen"
-          component={ConnectionsChatsScreen}
-          options={{title: 'Conexiones'}}
-        />
-        <TopTab.Screen
-          name="GeoFencesChatsScreen"
-          component={GeoFencesChatsScreen}
-          options={{title: 'Geocercas'}}
-        />
-      </TopTab.Navigator>
-    </PaperProvider>
+    <TopTab.Navigator>
+      <TopTab.Screen
+        name="ConnectionsChatsScreen"
+        component={ConnectionsChatsScreen}
+        options={{title: 'Conexiones'}}
+      />
+      <TopTab.Screen
+        name="GeoFencesChatsScreen"
+        component={GeoFencesChatsScreen}
+        options={{title: 'Geocercas'}}
+      />
+    </TopTab.Navigator>
   );
 };

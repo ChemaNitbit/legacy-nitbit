@@ -1,5 +1,6 @@
 import React, {useMemo} from 'react';
 import {StyleSheet, View} from 'react-native';
+import {useTheme} from 'react-native-paper';
 import {NbTabBar} from './NbTabBar/index';
 import {NbHeader} from './NbHeader';
 import {NbDefaultHeader} from './NbDefaultHeader';
@@ -12,14 +13,21 @@ const LayoutComponent = ({
   children: React.ReactNode;
   spaced?: boolean;
 }) => {
+  const theme = useTheme();
   const Content = useMemo(
     () =>
       spaced ? (
         <NbContainer>{children}</NbContainer>
       ) : (
-        <View style={styles.container}>{children}</View>
+        <View
+          style={{
+            ...styles.container,
+            backgroundColor: theme.colors.background,
+          }}>
+          {children}
+        </View>
       ),
-    [spaced, children],
+    [spaced, children, theme.colors.background],
   );
 
   return Content;
