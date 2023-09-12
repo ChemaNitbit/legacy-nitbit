@@ -24,7 +24,11 @@ export const GeneralComponentsScreen = () => {
       <Text>
         {'\n'} Badge: {'\n'}
       </Text>
-      <NbUserBadge imgUser={IMAGE_DEFAULT} name="odon" lastName="lozada" />
+      <NbUserBadge
+        imgUser={IMAGE_DEFAULT}
+        title="odon"
+        secondaryLabel="lozada"
+      />
       <Text>
         {'\n'} User Resent {'\n'}
       </Text>
