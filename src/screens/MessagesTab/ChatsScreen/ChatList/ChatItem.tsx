@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     gap: 8,
     display: 'flex',
     alignItems: 'flex-end',
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'center',
   },
 });
