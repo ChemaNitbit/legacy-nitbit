@@ -41,7 +41,7 @@ export const useListHiddingHeader = ({
       });
     } else if (shouldShow) {
       Animated.timing(translateYAnim, {
-        toValue: 0,
+        toValue: topTranslation * -1,
         duration: 300,
         useNativeDriver: true,
       }).start(() => {

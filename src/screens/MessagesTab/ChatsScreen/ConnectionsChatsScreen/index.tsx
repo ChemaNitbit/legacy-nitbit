@@ -9,8 +9,6 @@ import {ContactsShortcut} from './ContactsShortcut';
 import {useListHiddingHeader} from '../../../../hooks/animations/useListHiddingHeader';
 import {MessagesRootStackParamList} from '../../../../navigation/navigators/MessagesTabNavigator/MessagesRootStackParamList';
 
-const STORIES_CONTAINER_HEIGHT = 80;
-
 export const ConnectionsChatsScreen = (
   props: NativeStackScreenProps<
     MessagesRootStackParamList,
@@ -18,9 +16,8 @@ export const ConnectionsChatsScreen = (
   >,
 ): JSX.Element => {
   const {isHeaderHidden, translateYAnim, onScroll} = useListHiddingHeader({
-    initialThreshold: 200,
-    topTranslation: -100,
-    topSpaceAfterHeaderIsHidden: STORIES_CONTAINER_HEIGHT,
+    initialThreshold: 5,
+    topTranslation: -80,
   });
 
   const fakeChats = (length: number) => {
