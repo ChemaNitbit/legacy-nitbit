@@ -14,10 +14,10 @@ export function timeAgo(dateISOString: string) {
     return 'Hace poco';
   } else if (timeDifference < 60 * 60 * 1000) {
     const minutesAgo = Math.floor(timeDifference / (60 * 1000));
-    return `${minutesAgo} minutos atrás`;
+    return `Hace ${minutesAgo} minutos`;
   } else if (timeDifference < 24 * 60 * 60 * 1000) {
     const hoursAgo = Math.floor(timeDifference / (60 * 60 * 1000));
-    return `${hoursAgo} horas atrás`;
+    return `Hace ${hoursAgo} ${hoursAgo > 1 ? 'horas' : 'hora'}`;
   } else if (timeDifference < 2 * 24 * 60 * 60 * 1000) {
     return 'Ayer';
   } else if (date.getDay() === now.getDay()) {
