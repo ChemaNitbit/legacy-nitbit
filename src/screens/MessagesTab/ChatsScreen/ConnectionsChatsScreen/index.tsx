@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {ScrollView, Animated} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {NbSearchBar} from './SearchBar';
@@ -24,18 +24,20 @@ export const ConnectionsChatsScreen = (
   });
 
   return (
-    <Layout spaced>
-      {!isHeaderHidden && (
-        <Animated.View
-          style={[
-            styles.viewContainer,
-            {
-              transform: [{translateY: translateYAnim}],
-            },
-          ]}>
-          <ConnectionUpdatesList />
-        </Animated.View>
-      )}
+    <Layout>
+      <View style={{paddingTop: 16, paddingLeft: 16, paddingRight: 16}}>
+        {!isHeaderHidden && (
+          <Animated.View
+            style={[
+              styles.viewContainer,
+              {
+                transform: [{translateY: translateYAnim}],
+              },
+            ]}>
+            <ConnectionUpdatesList />
+          </Animated.View>
+        )}
+      </View>
       <Animated.View
         style={[
           {flex: 1},
@@ -43,7 +45,9 @@ export const ConnectionsChatsScreen = (
             transform: [{translateY: translateYAnim}],
           },
         ]}>
-        <NbSearchBar />
+        <View style={{paddingLeft: 16, paddingRight: 16}}>
+          <NbSearchBar />
+        </View>
         <ScrollView
           style={styles.scrollView}
           onScroll={onScroll}
@@ -68,5 +72,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     marginTop: 16,
+    paddingLeft: 16,
+    paddingRight: 16,
   },
 });
