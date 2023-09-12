@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {Flex, Box} from '@react-native-material/core';
+import {Box, Flex} from '@react-native-material/core';
 import {Image, Text} from 'react-native';
 import NbProfilePhoto from '../nb-profile-photo/NbProfilePhoto';
 

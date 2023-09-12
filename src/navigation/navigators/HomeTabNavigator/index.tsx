@@ -9,6 +9,7 @@ import {ConnectionRequestsScreen} from '../../../screens/HomeTab/ConnectionReque
 import {ChatScreen} from '../../../screens/MessagesTab/ChatScreen';
 import {StoriesScreen} from '../../../screens/HomeTab/StoriesScreen';
 import {PostDetailScreen} from '../../../screens/HomeTab/PostDetailScreen';
+import {GeneralComponentsScreen} from '../../../screens/HomeTab/GeneralComponentsScreen';
 
 const HomeTabStack = createNativeStackNavigator();
 
@@ -57,6 +58,13 @@ const HomeTabNavigator = (): JSX.Element => {
         component={PostDetailScreen}
         options={{
           header: Layout.NbDefaultHeader,
+        }}
+      />
+      <HomeTabStack.Screen
+        name="GenetalComponentes"
+        component={GeneralComponentsScreen}
+        options={{
+          headerShown: false,
         }}
       />
     </HomeTabStack.Navigator>

@@ -23,7 +23,9 @@ export const onLogin = (credentials: ICredentials, navigation: any) => {
     .then(response => {
       navigation.navigate('Splash');
     })
-    .catch(error => console.log('SignIn > Error: ', error));
+    .catch(error => {
+      // console.log('SignIn > Error: ', error)
+    });
 };
 
 export const onSignUp = (payload: UserType, navigation: any) => {
