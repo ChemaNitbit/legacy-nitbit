@@ -21,7 +21,7 @@ export const ChatItem = ({chat, onPress, timeAgoLabel}: ChatItemProps) => {
         imgUser={chat.user.photoUrl}
         secondaryLabel={chat.lastMessage.plainMessage}
       />
-      <View style={{}}>
+      <View style={styles.rightContainer}>
         <Text style={{fontSize: 10, fontWeight: '600'}}>{timeAgoLabel}</Text>
         <NewMessageIndicator read={chat.lastMessage.read} />
       </View>
