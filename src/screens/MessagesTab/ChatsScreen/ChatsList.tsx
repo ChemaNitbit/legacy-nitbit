@@ -1,44 +1,58 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ChatItem} from './ChatItem';
 import {MessagesRootStackParamList} from '../../../navigation/navigators/MessagesTabNavigator/MessagesRootStackParamList';
+import {Chat} from '../../../shared/domain/chat';
+import {timeAgo} from '../../../shared/application/utils/timeAgo';
 
 export interface ChatsListProps {
-  virtualList: boolean;
+  virtualList?: boolean;
+  chats?: Chat[];
 }
+
+type ChatListItem = Chat & {timeAgoLabel: string};
 
 export const ChatsList = (
   props: NativeStackScreenProps<
     MessagesRootStackParamList,
     'ChatsScreen' | 'ConnectionsChatsScreen' | 'GeoFencesChatsScreen'
-  >,
+  > &
+    ChatsListProps,
 ): JSX.Element => {
+  const [listOfChats, setListOfChats] = React.useState<ChatListItem[]>([]);
+
+  const loadChatsWithTimeAgo = useCallback(() => {
+    const chatsWithTimeAgo = (props.chats || []).map(chat => ({
+      ...chat,
+      timeAgoLabel: timeAgo(chat.lastMessage.sentDate),
+    }));
+    setListOfChats(chatsWithTimeAgo);
+  }, [props.chats]);
+
+  React.useEffect(() => {
+    const intervalId = setInterval(() => {
+      loadChatsWithTimeAgo();
+    }, 60000);
+    return () => clearInterval(intervalId);
+  }, [loadChatsWithTimeAgo]);
+
+  React.useEffect(() => {
+    loadChatsWithTimeAgo();
+  }, [loadChatsWithTimeAgo, props.chats]);
+
   const goToChat = ({chatId}: {chatId: string}) => {
     props.navigation.navigate('ChatScreen', {chatId});
   };
 
-  const fakeChats = (length: number) => {
-    return Array.from({length}, () => ({
-      id: Math.random().toString(),
-      user: {
-        id: Math.random().toString(),
-        name: 'Marjoury',
-        photoUrl: 'https://picsum.photos/200/300',
-      },
-      lastMessage: {
-        plainMessage: 'Hola! Cómo estás?',
-        rawMessage: 'Hola! Cómo *estás*?',
-        sentDate: new Date().toISOString(),
-        // randomize if is th
-        read: Math.random() > 0.5,
-      },
-    }));
-  };
-
   return (
     <>
-      {fakeChats(80).map(chat => (
-        <ChatItem key={chat.id} chat={chat} onPress={goToChat} />
+      {(listOfChats || []).map(chat => (
+        <ChatItem
+          key={chat.id}
+          chat={chat}
+          onPress={goToChat}
+          timeAgoLabel={chat.timeAgoLabel}
+        />
       ))}
     </>
   );

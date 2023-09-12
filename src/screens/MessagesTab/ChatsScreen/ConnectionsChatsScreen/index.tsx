@@ -23,6 +23,24 @@ export const ConnectionsChatsScreen = (
     topSpaceAfterHeaderIsHidden: STORIES_CONTAINER_HEIGHT,
   });
 
+  const fakeChats = (length: number) => {
+    return Array.from({length}, () => ({
+      id: Math.random().toString(),
+      user: {
+        id: Math.random().toString(),
+        name: 'Marjoury',
+        photoUrl: 'https://picsum.photos/200/300',
+      },
+      lastMessage: {
+        plainMessage: 'Hola! Cómo estás?',
+        rawMessage: 'Hola! Cómo *estás*?',
+        sentDate: new Date().toISOString(),
+        // randomize if is th
+        read: Math.random() > 0.5,
+      },
+    }));
+  };
+
   return (
     <Layout>
       <View style={{paddingTop: 16, paddingLeft: 16, paddingRight: 16}}>
@@ -52,7 +70,7 @@ export const ConnectionsChatsScreen = (
           style={styles.scrollView}
           onScroll={onScroll}
           scrollEventThrottle={16}>
-          <ChatsList {...props} />
+          <ChatsList {...props} chats={fakeChats(80)} />
         </ScrollView>
       </Animated.View>
     </Layout>

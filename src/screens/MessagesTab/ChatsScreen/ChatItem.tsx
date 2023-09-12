@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
-import {timeAgo} from '../../../shared/application/utils/timeAgo';
 import {NbUserBadge} from '../../../components';
+import {Chat} from '../../../shared/domain/chat';
 
 const NewMessageIndicator = ({read}: {read: boolean}) => {
   return (
@@ -17,24 +17,12 @@ const NewMessageIndicator = ({read}: {read: boolean}) => {
 };
 
 interface ChatItemProps {
-  chat: {
-    id: string;
-    user: {
-      id: string;
-      name: string;
-      photoUrl: string;
-    };
-    lastMessage: {
-      plainMessage: string;
-      rawMessage: string;
-      sentDate: string;
-      read: boolean;
-    };
-  };
+  chat: Chat;
+  timeAgoLabel: string;
   onPress: ({chatId}: {chatId: string}) => void;
 }
 
-export const ChatItem = ({chat, onPress}: ChatItemProps) => {
+export const ChatItem = ({chat, onPress, timeAgoLabel}: ChatItemProps) => {
   return (
     <TouchableOpacity
       key={chat.id}
@@ -59,9 +47,7 @@ export const ChatItem = ({chat, onPress}: ChatItemProps) => {
           flexDirection: 'column',
           justifyContent: 'center',
         }}>
-        <Text style={{fontSize: 10, fontWeight: '600'}}>
-          {timeAgo(chat.lastMessage.sentDate)}
-        </Text>
+        <Text style={{fontSize: 10, fontWeight: '600'}}>{timeAgoLabel}</Text>
         <NewMessageIndicator read={chat.lastMessage.read} />
       </View>
     </TouchableOpacity>
