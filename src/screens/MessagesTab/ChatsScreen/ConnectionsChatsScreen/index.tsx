@@ -55,17 +55,12 @@ export const ConnectionsChatsScreen = (
       {!isHeaderHidden && (
         <Animated.View
           style={[
-            styles.viewContainer,
+            {},
             {
               transform: [{translateY: translateYAnim}],
             },
           ]}>
-          <View
-            style={{
-              padding: 16,
-              display: 'flex',
-              flexDirection: 'row',
-            }}>
+          <View style={styles.contactsShortcutContainer}>
             <ContactsShortcut
               contacts={fakeChats(10).map(mock => ({
                 imgUser: mock.user.photoUrl,
@@ -84,11 +79,11 @@ export const ConnectionsChatsScreen = (
             transform: [{translateY: translateYAnim}],
           },
         ]}>
-        <View style={{paddingLeft: 16, paddingRight: 16}}>
+        <View style={styles.searchContainer}>
           <NbSearchBar />
         </View>
         <ScrollView
-          style={styles.scrollView}
+          style={styles.chatsContainer}
           onScroll={onScroll}
           scrollEventThrottle={16}>
           <ChatsList {...props} chats={fakeChats(80)} />
@@ -102,12 +97,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  viewContainer: {
+  contactsShortcutContainer: {
+    padding: 16,
     display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  scrollView: {
+  searchContainer: {paddingLeft: 16, paddingRight: 16},
+  chatsContainer: {
     marginTop: 16,
     paddingLeft: 16,
     paddingRight: 16,
