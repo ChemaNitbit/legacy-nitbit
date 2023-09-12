@@ -35,7 +35,7 @@ export const ChatItem = ({chat, onPress, timeAgoLabel}: ChatItemProps) => {
       }}
       onPress={() => onPress({chatId: chat.id})}>
       <NbUserBadge
-        imgUser="https://picsum.photos/200/300"
+        imgUser={chat.user.photoUrl}
         title={chat.user.name}
         secondaryLabel={chat.lastMessage.plainMessage}
       />

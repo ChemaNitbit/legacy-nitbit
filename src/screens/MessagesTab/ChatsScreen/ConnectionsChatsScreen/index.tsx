@@ -29,7 +29,6 @@ export const ConnectionsChatsScreen = (
       user: {
         id: Math.random().toString(),
         name: 'Marjoury',
-        photoUrl: 'https://picsum.photos/200/300',
       },
       lastMessage: {
         plainMessage: 'Hola! Cómo estás?',
@@ -38,7 +37,17 @@ export const ConnectionsChatsScreen = (
         // randomize if is th
         read: Math.random() > 0.5,
       },
-    }));
+    })).map((chat, index) => {
+      return {
+        ...chat,
+        user: {
+          ...chat.user,
+          photoUrl: `https://randomuser.me/api/portraits/thumb/men/${
+            index + 1
+          }.jpg`,
+        },
+      };
+    });
   };
 
   return (
