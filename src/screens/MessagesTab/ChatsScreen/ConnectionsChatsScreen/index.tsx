@@ -5,7 +5,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ChatsList} from '../ChatsList';
 import {NbSearchBar} from './SearchBar';
 import {Layout} from '../../../../components/layout';
-import {ConnectionUpdatesList} from './ConnectionUpdatesList';
+import {ContactsShortcut} from './ContactsShortcut';
 import {useListHiddingHeader} from '../../../../hooks/animations/useListHiddingHeader';
 import {MessagesRootStackParamList} from '../../../../navigation/navigators/MessagesTabNavigator/MessagesRootStackParamList';
 
@@ -66,7 +66,14 @@ export const ConnectionsChatsScreen = (
               display: 'flex',
               flexDirection: 'row',
             }}>
-            <ConnectionUpdatesList />
+            <ContactsShortcut
+              contacts={fakeChats(10).map(mock => ({
+                imgUser: mock.user.photoUrl,
+                lastName: mock.user.name,
+                name: mock.user.name,
+                isOnline: Math.random() > 0.5,
+              }))}
+            />
           </View>
         </Animated.View>
       )}
