@@ -20,7 +20,7 @@ const NBButton = ({
   if (iconName) {
     return (
       <TouchableOpacity onPress={onPress}>
-        <MaterialCommunityIcons name={iconName} size={30} color="black" />
+        <MaterialCommunityIcons name={iconName} size={24} color="black" />
       </TouchableOpacity>
     );
   }
