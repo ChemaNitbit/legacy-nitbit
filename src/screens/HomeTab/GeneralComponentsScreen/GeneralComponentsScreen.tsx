@@ -13,6 +13,7 @@ import {MOCK_LIST_USERS_RESENT} from '../../../mocks/list-user-resent.mock';
 import {NbIcon} from '../../../components/nb-icon';
 import {NbCardPost} from '../../../components/nb-card-post/NbCardPost';
 import {ScrollView} from 'react-native';
+import {NbCardNotification} from '../../../components/nb-card-notification';
 
 export const GeneralComponentsScreen = () => {
   return (
@@ -81,6 +82,42 @@ export const GeneralComponentsScreen = () => {
         onAccept={() => ({})}
         onBlock={() => ({})}
         onCancel={() => ({})}
+      />
+
+      <Text>
+        {'\n'} Card Notification Conections {'\n'}
+      </Text>
+      <NbCardNotification
+        imgUser={IMAGE_DEFAULT}
+        name="odon"
+        lastName="lozada"
+        type="request"
+        onPress={() => ({})}
+        countConection={3}
+      />
+
+      <Text>
+        {'\n'} Card Notification Liked {'\n'}
+      </Text>
+      <NbCardNotification
+        imgUser={IMAGE_DEFAULT}
+        name="odon"
+        lastName="lozada"
+        type="liked"
+        onPress={() => ({})}
+        timeAction="3 min"
+      />
+
+      <Text>
+        {'\n'} Card Notification Comment {'\n'}
+      </Text>
+      <NbCardNotification
+        imgUser={IMAGE_DEFAULT}
+        name="odon"
+        lastName="lozada"
+        type="comment"
+        onPress={() => ({})}
+        timeAction="45 min"
       />
     </ScrollView>
   );
