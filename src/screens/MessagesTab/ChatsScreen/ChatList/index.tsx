@@ -1,9 +1,9 @@
 import React, {useCallback} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ChatItem} from './ChatItem';
-import {MessagesRootStackParamList} from '../../../navigation/navigators/MessagesTabNavigator/MessagesRootStackParamList';
-import {Chat} from '../../../shared/domain/chat';
-import {timeAgo} from '../../../shared/application/utils/timeAgo';
+import {MessagesRootStackParamList} from '../../../../navigation/navigators/MessagesTabNavigator/MessagesRootStackParamList';
+import {Chat} from '../../../../shared/domain/chat';
+import {timeAgo} from '../../../../shared/application/utils/timeAgo';
 
 export interface ChatsListProps {
   virtualList?: boolean;

@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ScrollView, Animated} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {ChatsList} from '../ChatsList';
+import {ChatsList} from '../ChatList';
 import {NbSearchBar} from './SearchBar';
 import {Layout} from '../../../../components/layout';
 import {ContactsShortcut} from './ContactsShortcut';

@@ -1,4 +1,4 @@
-import {ChatsListProps} from '../../../screens/MessagesTab/ChatsScreen/ChatsList';
+import {ChatsListProps} from '../../../screens/MessagesTab/ChatsScreen/ChatList';
 
 // Define other screens and their props here
 export type MessagesRootStackParamList = {
