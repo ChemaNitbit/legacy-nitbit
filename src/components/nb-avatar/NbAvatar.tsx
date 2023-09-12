@@ -9,8 +9,6 @@ export interface AvatarProps {
 }
 
 const NbAvatar: React.FC<AvatarProps> = ({url = IMAGE_DEFAULT, size = 25}) => {
-  // console.log("NbAvatar: ", url);
-
   const imageStyle: ImageStyle = {
     width: size,
     height: size,

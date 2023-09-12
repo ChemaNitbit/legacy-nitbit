@@ -2,12 +2,12 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ScrollView, Animated} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {NbSearchBar} from './SearchBar';
 import {ChatsList} from '../ChatsList';
+import {NbSearchBar} from './SearchBar';
+import {Layout} from '../../../../components/layout';
 import {ConnectionUpdatesList} from './ConnectionUpdatesList';
 import {useListHiddingHeader} from '../../../../hooks/animations/useListHiddingHeader';
 import {MessagesRootStackParamList} from '../../../../navigation/navigators/MessagesTabNavigator/MessagesRootStackParamList';
-import {Layout} from '../../../../components/layout';
 
 const STORIES_CONTAINER_HEIGHT = 80;
 
@@ -43,19 +43,24 @@ export const ConnectionsChatsScreen = (
 
   return (
     <Layout>
-      <View style={{paddingTop: 16, paddingLeft: 16, paddingRight: 16}}>
-        {!isHeaderHidden && (
-          <Animated.View
-            style={[
-              styles.viewContainer,
-              {
-                transform: [{translateY: translateYAnim}],
-              },
-            ]}>
+      {!isHeaderHidden && (
+        <Animated.View
+          style={[
+            styles.viewContainer,
+            {
+              transform: [{translateY: translateYAnim}],
+            },
+          ]}>
+          <View
+            style={{
+              padding: 16,
+              display: 'flex',
+              flexDirection: 'row',
+            }}>
             <ConnectionUpdatesList />
-          </Animated.View>
-        )}
-      </View>
+          </View>
+        </Animated.View>
+      )}
       <Animated.View
         style={[
           {flex: 1},
@@ -83,10 +88,8 @@ const styles = StyleSheet.create({
   },
   viewContainer: {
     display: 'flex',
-    height: STORIES_CONTAINER_HEIGHT,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
   },
   scrollView: {
     marginTop: 16,
