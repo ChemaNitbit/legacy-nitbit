@@ -6,12 +6,12 @@ import {NbInteractionPostProps} from '.';
 import {StyleSheet} from 'react-native';
 
 export const NbInteractionPost = ({
-  onPressLike,
+  onLike,
   liked,
   countLike,
-  onPressComment,
+  onComment,
   countComment,
-  onPressShare,
+  onShare,
   countShare,
 }: NbInteractionPostProps) => {
   return (
@@ -19,17 +19,17 @@ export const NbInteractionPost = ({
       <Box style={styles.itemInteractionPost}>
         <NbIcon
           name={liked ? 'cards-heart' : 'cards-heart-outline'}
-          size="sm"
-          onPress={onPressLike}
+          size="md"
+          onPress={onLike}
         />
         <Text style={styles.textCount}>{countLike}</Text>
       </Box>
       <Box>
-        <NbIcon name="comment-outline" size="sm" onPress={onPressComment} />
+        <NbIcon name="comment-outline" size="md" onPress={onComment} />
         <Text style={styles.textCount}>{countComment}</Text>
       </Box>
       <Box>
-        <NbIcon name="share-outline" size="sm" onPress={onPressShare} />
+        <NbIcon name="share-outline" size="md" onPress={onShare} />
         <Text style={styles.textCount}>{countShare}</Text>
       </Box>
     </Box>

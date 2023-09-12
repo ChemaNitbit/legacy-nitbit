@@ -20,11 +20,11 @@ export const NbCardPost = ({children}: any) => {
         <NbInteractionPost
           liked={true}
           countLike={2}
-          onPressLike={() => ({})}
+          onLike={() => ({})}
           countComment={2}
-          onPressComment={() => ({})}
+          onComment={() => ({})}
           countShare={4}
-          onPressShare={() => ({})}
+          onShare={() => ({})}
         />
         <NbUsersResent listUser={MOCK_LIST_USERS_RESENT} size={32} />
       </Box>
