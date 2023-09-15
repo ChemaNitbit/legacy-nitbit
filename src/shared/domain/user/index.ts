@@ -1,4 +1,4 @@
-export interface IUserBadge {
+export interface User {
   imgUser: string;
   name: string;
   lastName: string;

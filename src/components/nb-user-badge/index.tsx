@@ -1,10 +1,14 @@
 import {Box} from '@react-native-material/core';
 import React from 'react';
 import {Text} from 'react-native-paper';
-import {IUserBadge} from '../../models/nb-user-badge.model';
 import NbAvatar from '../nb-avatar/NbAvatar';
+import {NbUserBadgeProps} from './NbUserBadge.types';
 
-export const NbUserBadge = ({imgUser, name, lastName}: IUserBadge) => {
+export const NbUserBadge = ({
+  imgUser,
+  title,
+  secondaryLabel,
+}: NbUserBadgeProps) => {
   return (
     <Box
       style={{
@@ -23,14 +27,14 @@ export const NbUserBadge = ({imgUser, name, lastName}: IUserBadge) => {
           style={{
             fontSize: 12,
           }}>
-          {lastName}
+          {secondaryLabel}
         </Text>
         <Text
           style={{
             fontSize: 16,
             fontWeight: 'bold',
           }}>
-          {name}
+          {title}
         </Text>
       </Box>
     </Box>

@@ -12,7 +12,11 @@ export const NbCardPost = ({children}: any) => {
   return (
     <Box style={styles.cardContent}>
       <Box style={styles.carHeader}>
-        <NbUserBadge imgUser={IMAGE_DEFAULT} name="odon" lastName="lozada" />
+        <NbUserBadge
+          imgUser={IMAGE_DEFAULT}
+          title="odon"
+          secondaryLabel="lozada"
+        />
         <NbIcon name="dots-vertical" size="md" />
       </Box>
       <Box>{children}</Box>
