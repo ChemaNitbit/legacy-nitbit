@@ -88,9 +88,11 @@ export const GeneralComponentsScreen = () => {
         {'\n'} Card Notification Conections {'\n'}
       </Text>
       <NbCardNotification
-        imgUser={IMAGE_DEFAULT}
-        name="odon"
-        lastName="lozada"
+        user={{
+          imgUser: IMAGE_DEFAULT,
+          name: 'odon',
+          lastName: 'lozada',
+        }}
         type="request"
         onPress={() => ({})}
         countConection={3}
@@ -100,9 +102,11 @@ export const GeneralComponentsScreen = () => {
         {'\n'} Card Notification Liked {'\n'}
       </Text>
       <NbCardNotification
-        imgUser={IMAGE_DEFAULT}
-        name="odon"
-        lastName="lozada"
+        user={{
+          imgUser: IMAGE_DEFAULT,
+          name: 'odon',
+          lastName: 'lozada',
+        }}
         type="liked"
         onPress={() => ({})}
         timeAction="3 min"
@@ -112,9 +116,11 @@ export const GeneralComponentsScreen = () => {
         {'\n'} Card Notification Comment {'\n'}
       </Text>
       <NbCardNotification
-        imgUser={IMAGE_DEFAULT}
-        name="odon"
-        lastName="lozada"
+        user={{
+          imgUser: IMAGE_DEFAULT,
+          name: 'odon',
+          lastName: 'lozada',
+        }}
         type="comment"
         onPress={() => ({})}
         timeAction="45 min"

@@ -7,11 +7,15 @@ export const VARIANT_NOTIFICATION = {
 };
 
 export interface NbCardNotificationProps {
-  imgUser: string;
-  name: string;
-  lastName: string;
+  user: UserNotificationProps;
   type: 'request' | 'comment' | 'liked';
   onPress: () => void;
   countConection?: number;
   timeAction?: string;
+}
+
+export interface UserNotificationProps {
+  imgUser: string;
+  name: string;
+  lastName: string;
 }

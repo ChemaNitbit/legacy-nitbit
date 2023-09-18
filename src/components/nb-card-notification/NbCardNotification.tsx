@@ -8,14 +8,13 @@ import {TouchableOpacity} from 'react-native';
 import {styles} from './NbCardNotification.style';
 
 export const NbCardNotification = ({
-  imgUser,
-  name,
-  lastName,
+  user,
   type,
   onPress,
   countConection,
   timeAction,
 }: NbCardNotificationProps) => {
+  const {imgUser, name, lastName} = user;
   const buildVariant = () => {
     if (type === VARIANT_NOTIFICATION.liked) {
       return getElementAction('cards-heart-outline', timeAction!, 'Nuevo Like');
@@ -35,7 +34,7 @@ export const NbCardNotification = ({
     );
   };
   const getElementAction = (
-    nameIcon: string,
+    iconName: string,
     time: string,
     label: string,
     color?: string,
@@ -44,7 +43,7 @@ export const NbCardNotification = ({
       <Box style={styles.contentElementAction}>
         <Text style={{fontSize: 12}}>{label}</Text>
         <Box style={styles.actionAndTime}>
-          <NbIcon name={nameIcon} size="md" color={color} />
+          <NbIcon name={iconName} size="md" color={color} />
           <Text style={{fontSize: 12}}>{time}</Text>
         </Box>
       </Box>
@@ -52,7 +51,7 @@ export const NbCardNotification = ({
   };
 
   const getElementConection = (
-    nameIcon: string,
+    iconName: string,
     count: number,
     label: string,
     color?: string,
@@ -63,7 +62,7 @@ export const NbCardNotification = ({
           {label}: {count}
         </Text>
         <Box>
-          <NbIcon name={nameIcon} size="md" color={color} />
+          <NbIcon name={iconName} size="md" color={color} />
         </Box>
       </Box>
     );
