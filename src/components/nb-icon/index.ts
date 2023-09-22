@@ -9,5 +9,5 @@ export interface NbIconProps {
   name: string;
   size: 'sm' | 'md' | 'lg';
   onPress?: () => void;
-  color?: 'black' | 'white'; // TODO pendiente por definir colores
+  color?: string; // TODO pendiente por definir colores
 }

@@ -1,7 +1,9 @@
-import {Box, Flex} from '@react-native-material/core';
+import {Flex} from '@react-native-material/core';
 import React from 'react';
 import {Text} from 'react-native-paper';
 import {
+  NbActionsRequestConection,
+  NbCardRequestConection,
   NbInteractionPost,
   NbUserBadge,
   NbUsersResent,
@@ -10,10 +12,12 @@ import {IMAGE_DEFAULT} from '../../../contants';
 import {MOCK_LIST_USERS_RESENT} from '../../../mocks/list-user-resent.mock';
 import {NbIcon} from '../../../components/nb-icon';
 import {NbCardPost} from '../../../components/nb-card-post/NbCardPost';
+import {ScrollView} from 'react-native';
+import {NbCardNotification} from '../../../components/nb-card-notification';
 
 export const GeneralComponentsScreen = () => {
   return (
-    <Box>
+    <ScrollView>
       <Text
         style={{
           fontWeight: 'bold',
@@ -49,11 +53,11 @@ export const GeneralComponentsScreen = () => {
       <NbInteractionPost
         liked={true}
         countLike={2}
-        onPressLike={() => ({})}
+        onLike={() => ({})}
         countComment={2}
-        onPressComment={() => ({})}
+        onComment={() => ({})}
         countShare={4}
-        onPressShare={() => ({})}
+        onShare={() => ({})}
       />
 
       <Text>
@@ -62,6 +66,69 @@ export const GeneralComponentsScreen = () => {
       <NbCardPost>
         <Text>aaa</Text>
       </NbCardPost>
-    </Box>
+
+      <Text>
+        {'\n'} Actions request conection {'\n'}
+      </Text>
+      <NbActionsRequestConection
+        onAccept={() => ({})}
+        onBlock={() => ({})}
+        onCancel={() => ({})}
+      />
+
+      <Text>
+        {'\n'} Card request conection {'\n'}
+      </Text>
+      <NbCardRequestConection
+        url={IMAGE_DEFAULT}
+        name="Jose Maria"
+        description="descripcion corta de unas cuantas palabras"
+        onAccept={() => ({})}
+        onBlock={() => ({})}
+        onCancel={() => ({})}
+      />
+
+      <Text>
+        {'\n'} Card Notification Conections {'\n'}
+      </Text>
+      <NbCardNotification
+        user={{
+          imgUser: IMAGE_DEFAULT,
+          name: 'odon',
+          lastName: 'lozada',
+        }}
+        type="request"
+        onPress={() => ({})}
+        countConection={3}
+      />
+
+      <Text>
+        {'\n'} Card Notification Liked {'\n'}
+      </Text>
+      <NbCardNotification
+        user={{
+          imgUser: IMAGE_DEFAULT,
+          name: 'odon',
+          lastName: 'lozada',
+        }}
+        type="liked"
+        onPress={() => ({})}
+        timeAction="3 min"
+      />
+
+      <Text>
+        {'\n'} Card Notification Comment {'\n'}
+      </Text>
+      <NbCardNotification
+        user={{
+          imgUser: IMAGE_DEFAULT,
+          name: 'odon',
+          lastName: 'lozada',
+        }}
+        type="comment"
+        onPress={() => ({})}
+        timeAction="45 min"
+      />
+    </ScrollView>
   );
 };

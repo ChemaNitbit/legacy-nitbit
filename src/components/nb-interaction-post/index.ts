@@ -1,11 +1,11 @@
 export * from './NbInteractionPost';
 
 export interface NbInteractionPostProps {
-  onPressLike: () => void;
+  onLike: () => void;
   liked: boolean;
   countLike: number;
-  onPressComment: () => void;
+  onComment: () => void;
   countComment: number;
-  onPressShare: () => void;
+  onShare: () => void;
   countShare: number;
 }
