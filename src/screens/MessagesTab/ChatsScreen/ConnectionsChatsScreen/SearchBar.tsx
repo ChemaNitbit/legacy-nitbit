@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity} from 'react-native';
+import {NbTextInput} from '../../../../components/nb-text-input';
 import {debounce} from '../../../../shared/application/utils/debounce';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -30,36 +31,18 @@ export const NbSearchBar = ({
   };
 
   return (
-    <View style={styles.container}>
-      <TextInput
-        placeholder="Nombre o teléfono"
-        style={{...styles.input, backgroundColor: '#F0F0F0'}}
-        value={searchQuery}
-        onChangeText={onSearchQueryChange}
-      />
-      <TouchableOpacity onPress={onActionPress}>
-        <MaterialCommunityIcons
-          name={shouldUseExtraAction ? extraAction?.icon : 'magnify'}
-          size={24}
-        />
-      </TouchableOpacity>
-    </View>
+    <NbTextInput
+      placeholder="Nombre o teléfono"
+      onChangeText={onSearchQueryChange}
+      rightAction={
+        <TouchableOpacity onPress={onActionPress}>
+          <MaterialCommunityIcons
+            style={{marginRight: 20}}
+            name={shouldUseExtraAction ? extraAction?.icon : 'magnify'}
+            size={24}
+          />
+        </TouchableOpacity>
+      }
+    />
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: 50,
-    paddingLeft: 20,
-    paddingRight: 20,
-    backgroundColor: '#F0F0F0',
-  },
-  input: {
-    height: 40,
-    fontSize: 16,
-    flex: 1,
-  },
-});
