@@ -11,6 +11,7 @@ interface NbTextInputProps {
   leftAction?: Action | React.ReactElement;
   rightAction?: Action | React.ReactElement;
   onChangeText?: (text: string) => any;
+  placeholder?: string;
 }
 
 export const NbTextInput = (props: NbTextInputProps): JSX.Element => {
@@ -49,7 +50,7 @@ export const NbTextInput = (props: NbTextInputProps): JSX.Element => {
       {leftElement}
       <TextInput
         style={styles.input}
-        placeholder="Enviar mensaje..."
+        placeholder={props.placeholder}
         onChangeText={props.onChangeText}
       />
       {rightElement}
