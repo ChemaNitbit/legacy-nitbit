@@ -4,7 +4,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 interface Action {
   iconName: string;
-  onPress: () => any;
+  onPress?: () => any;
 }
 
 interface NbTextInputProps {
@@ -22,7 +22,7 @@ export const NbTextInput = (props: NbTextInputProps): JSX.Element => {
 
     return (
       <View style={{padding: 10}}>
-        <TouchableOpacity onPress={(action as Action).onPress}>
+        <TouchableOpacity onPress={(action as Action)?.onPress}>
           <MaterialCommunityIcons
             name={(action as Action).iconName}
             size={24}
