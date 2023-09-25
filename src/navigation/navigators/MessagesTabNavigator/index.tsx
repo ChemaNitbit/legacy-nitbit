@@ -6,6 +6,7 @@ import {Layout} from '../../../components/layout';
 import {ChatScreen} from '../../../screens/MessagesTab/ChatScreen';
 import {MessagesHeader} from './MessagesHeader';
 import {ChatSearcherScreen} from '../../../screens/MessagesTab/ChatSearcherScreen';
+import {ChatHeader} from './ChatHeader';
 
 const MessagesTabStack = createNativeStackNavigator();
 
@@ -26,7 +27,7 @@ const MessagesTabNavigator = (): JSX.Element => {
         name="ChatScreen"
         component={ChatScreen}
         options={{
-          header: Layout.NbDefaultHeader,
+          header: ChatHeader,
         }}
       />
       <MessagesTabStack.Screen
