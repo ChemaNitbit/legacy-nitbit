@@ -21,7 +21,7 @@ export function NbHeader({
     allowGoingBack === false ? false : back && backButtonAllowed;
 
   return (
-    <Appbar.Header>
+    <Appbar.Header style={{paddingLeft: 16, paddingRight: 16}}>
       {showBackButton ? (
         <Appbar.BackAction onPress={navigation.goBack} />
       ) : (

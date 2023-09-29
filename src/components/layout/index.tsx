@@ -1,59 +1,47 @@
-import React from 'react';
-import {View, SafeAreaView, ScrollView, Image, Text} from 'react-native';
-import {styles} from './layout.styles';
-import {PaperProvider} from 'react-native-paper';
+import React, {useMemo} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {useTheme} from 'react-native-paper';
+import {NbTabBar} from './NbTabBar/index';
+import {NbHeader} from './NbHeader';
+import {NbDefaultHeader} from './NbDefaultHeader';
+import {NbContainer} from './NbContainer';
 
-export function Layout() {
-  return (
-    <PaperProvider>
-      <View style={{width: '100%'}}>
-        <SafeAreaView style={styles.screenContainer}>
-          <ScrollView
-            contentContainerStyle={styles.scrollContainerContent}
-            style={styles.scrollContainer}>
-            <View style={styles.headerContainer}>
-              <Image
-                style={{width: '100%', height: '100%'}}
-                source={{
-                  uri: 'https://picsum.photos/200/300',
-                }}
-              />
-            </View>
-            <View style={styles.card}>
-              <Text style={{fontSize: 20, fontWeight: 'bold'}}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                aliquet, tortor sed accumsan bibendum, erat ligula aliquet
-                tortor, non blandit nibh massa eget nunc. Nulla facilisi. Donec
-                nec diam vel augue tincidunt semper. Sed vitae eros euismod,
-                aliquam eros quis, aliquam nisl. Donec euismod, nisl eget
-                ultricies ultrices, nunc nisl aliquet nunc, vitae aliquam nisl
-                nisl nec nunc. Donec euismod, nisl eget ultricies ultrices, nunc
-                nisl aliquet nunc, vitae aliquam nisl nisl nec nunc.
-              </Text>
-              <Text style={{fontSize: 20, fontWeight: 'bold'}}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                aliquet, tortor sed accumsan bibendum, erat ligula aliquet
-                tortor, non blandit nibh massa eget nunc. Nulla facilisi. Donec
-                nec diam vel augue tincidunt semper. Sed vitae eros euismod,
-                aliquam eros quis, aliquam nisl. Donec euismod, nisl eget
-                ultricies ultrices, nunc nisl aliquet nunc, vitae aliquam nisl
-                nisl nec nunc. Donec euismod, nisl eget ultricies ultrices, nunc
-                nisl aliquet nunc, vitae aliquam nisl nisl nec nunc.
-              </Text>
-              <Text style={{fontSize: 20, fontWeight: 'bold'}}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                aliquet, tortor sed accumsan bibendum, erat ligula aliquet
-                tortor, non blandit nibh massa eget nunc. Nulla facilisi. Donec
-                nec diam vel augue tincidunt semper. Sed vitae eros euismod,
-                aliquam eros quis, aliquam nisl. Donec euismod, nisl eget
-                ultricies ultrices, nunc nisl aliquet nunc, vitae aliquam nisl
-                nisl nec nunc. Donec euismod, nisl eget ultricies ultrices, nunc
-                nisl aliquet nunc, vitae aliquam nisl nisl nec nunc.
-              </Text>
-            </View>
-          </ScrollView>
-        </SafeAreaView>
-      </View>
-    </PaperProvider>
+const LayoutComponent = ({
+  children,
+  spaced = false,
+}: {
+  children: React.ReactNode;
+  spaced?: boolean;
+}) => {
+  const theme = useTheme();
+  const Content = useMemo(
+    () =>
+      spaced ? (
+        <NbContainer>{children}</NbContainer>
+      ) : (
+        <View
+          style={{
+            ...styles.container,
+            backgroundColor: theme.colors.background,
+          }}>
+          {children}
+        </View>
+      ),
+    [spaced, children, theme.colors.background],
   );
-}
+
+  return Content;
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
+LayoutComponent.NbHeader = NbHeader;
+LayoutComponent.NbTabBar = NbTabBar;
+LayoutComponent.NbDefaultHeader = NbDefaultHeader;
+LayoutComponent.NbContainer = NbContainer;
+
+export const Layout = LayoutComponent;

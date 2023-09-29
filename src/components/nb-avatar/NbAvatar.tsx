@@ -4,13 +4,11 @@ import {Image, ImageStyle} from 'react-native';
 import {IMAGE_DEFAULT} from '../../contants';
 
 export interface AvatarProps {
-  url: string | null;
+  url?: string | null;
   size: number;
 }
 
 const NbAvatar: React.FC<AvatarProps> = ({url = IMAGE_DEFAULT, size = 25}) => {
-  // console.log("NbAvatar: ", url);
-
   const imageStyle: ImageStyle = {
     width: size,
     height: size,

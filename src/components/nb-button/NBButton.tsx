@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, TouchableOpacity, ImageStyle} from 'react-native';
+import {Text, TouchableOpacity, ImageStyle, StyleSheet} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from './nb-button.styles';
 
@@ -9,6 +9,8 @@ export type NbButtonProps = {
   size?: number;
   type?: 'primary' | 'secondary' | 'danger' | 'default';
   iconName?: string;
+  rounded?: boolean;
+  iconColor?: string;
 };
 
 const NBButton = ({
@@ -16,11 +18,15 @@ const NBButton = ({
   title,
   size = 100,
   iconName,
+  rounded = false,
+  iconColor,
 }: NbButtonProps): JSX.Element => {
   if (iconName) {
     return (
-      <TouchableOpacity onPress={onPress}>
-        <MaterialCommunityIcons name={iconName} size={30} color="black" />
+      <TouchableOpacity
+        style={rounded ? btnStyles.roundedButton : {}}
+        onPress={onPress}>
+        <MaterialCommunityIcons name={iconName} size={20} color={iconColor} />
       </TouchableOpacity>
     );
   }
@@ -36,5 +42,17 @@ const NBButton = ({
     </TouchableOpacity>
   );
 };
+
+const btnStyles = StyleSheet.create({
+  roundedButton: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+    backgroundColor: '#8E54E9',
+  },
+});
 
 export default NBButton;

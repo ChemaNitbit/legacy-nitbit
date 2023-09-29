@@ -7,8 +7,9 @@ import {Text} from 'react-native-paper';
 export const MessagesHeader = (props: NativeStackHeaderProps): JSX.Element => {
   return (
     <Layout.NbHeader
-      leftAction={<NBButton iconName="email-outline" />}
+      {...props}
       allowGoingBack={false}
+      leftAction={<NBButton iconName="email-outline" />}
       rightActions={[
         {
           key: 'NEW_MESSAGE_BUTTON',
@@ -19,9 +20,10 @@ export const MessagesHeader = (props: NativeStackHeaderProps): JSX.Element => {
             />
           ),
         },
-      ]}
-      {...props}>
-      <Text>Mensajes</Text>
+      ]}>
+      <Text style={{fontSize: 16, fontWeight: '700', paddingLeft: 10}}>
+        Mensajes
+      </Text>
     </Layout.NbHeader>
   );
 };
