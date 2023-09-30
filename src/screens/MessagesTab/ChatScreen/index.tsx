@@ -1,16 +1,50 @@
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {PaperProvider, Text} from 'react-native-paper';
 import {MessagesRootStackParamList} from '../../../navigation/navigators/MessagesTabNavigator/MessagesRootStackParamList';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {
+  NativeStackNavigationProp,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
 import {NbTextInput} from '../../../components/nb-text-input';
 import NBButton from '../../../components/nb-button/NBButton';
 import {ChatBox} from './ChatBox';
+import {ChatHeaderNavigationOptions} from '../../../navigation/navigators/MessagesTabNavigator/ChatHeader';
 
-export const ChatScreen = (
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  props: NativeStackScreenProps<MessagesRootStackParamList, 'ChatScreen'>,
-): JSX.Element => {
+export interface ChatScreenProps
+  extends NativeStackScreenProps<MessagesRootStackParamList, 'ChatScreen'> {
+  navigation: NativeStackNavigationProp<
+    MessagesRootStackParamList,
+    'ChatScreen'
+  > & {
+    setOptions: (options: ChatHeaderNavigationOptions) => void;
+  };
+}
+
+export const ChatScreen = (props: ChatScreenProps): JSX.Element => {
+  useLayoutEffect(() => {
+    props.navigation.setOptions({
+      chat: {
+        id: '',
+        user: {
+          id: '',
+          name: '',
+          photoUrl: '',
+        },
+        lastMessage: {
+          plainMessage: '',
+          rawMessage: '',
+          sentDate: '',
+          read: false,
+        },
+      },
+      actions: {
+        allowBlock: true,
+        allowRemove: true,
+      },
+    });
+  }, [props.navigation]);
+
   return (
     <PaperProvider>
       <View
