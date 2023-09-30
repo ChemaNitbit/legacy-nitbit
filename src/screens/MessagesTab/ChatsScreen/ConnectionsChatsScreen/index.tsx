@@ -83,7 +83,11 @@ export const ConnectionsChatsScreen = (
           style={styles.chatsContainer}
           onScroll={onScroll}
           scrollEventThrottle={16}>
-          <ChatsList {...props} chats={fakeChats(80)} />
+          <ChatsList
+            {...props}
+            chats={fakeChats(80)}
+            type="EXISTING_CONNECTION"
+          />
         </ScrollView>
       </Animated.View>
     </Layout>

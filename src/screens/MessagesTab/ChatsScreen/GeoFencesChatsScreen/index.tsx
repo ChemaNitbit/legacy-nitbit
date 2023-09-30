@@ -82,7 +82,7 @@ export const GeoFencesChatsScreen = (
           style={styles.chatsContainer}
           onScroll={onScroll}
           scrollEventThrottle={16}>
-          <ChatsList {...props} chats={fakeChats(80)} />
+          <ChatsList {...props} chats={fakeChats(80)} type="GEOFENCE" />
         </ScrollView>
       </Animated.View>
     </Layout>

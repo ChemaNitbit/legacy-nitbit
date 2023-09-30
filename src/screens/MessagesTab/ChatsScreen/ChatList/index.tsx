@@ -5,9 +5,12 @@ import {MessagesRootStackParamList} from '../../../../navigation/navigators/Mess
 import {Chat} from '../../../../shared/domain/chat';
 import {timeAgo} from '../../../../shared/application/utils/timeAgo';
 
+export type ChatType = 'GEOFENCE' | 'EXISTING_CONNECTION' | 'FIRST_CONTACT';
+
 export interface ChatsListProps {
   virtualList?: boolean;
   chats?: Chat[];
+  type: ChatType;
 }
 
 type ChatListItem = Chat & {timeAgoLabel: string};
@@ -41,7 +44,7 @@ export const ChatsList = (
   }, [loadChatsWithTimeAgo, props.chats]);
 
   const goToChat = ({chatId}: {chatId: string}) => {
-    props.navigation.navigate('ChatScreen', {chatId});
+    props.navigation.navigate('ChatScreen', {chatId, chatType: props.type});
   };
 
   return (

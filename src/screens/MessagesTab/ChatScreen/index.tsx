@@ -10,6 +10,7 @@ import {NbTextInput} from '../../../components/nb-text-input';
 import NBButton from '../../../components/nb-button/NBButton';
 import {ChatBox} from './ChatBox';
 import {ChatHeaderNavigationOptions} from '../../../navigation/navigators/MessagesTabNavigator/ChatHeader';
+import {ChatType} from '../ChatsScreen/ChatList';
 
 export interface ChatScreenProps
   extends NativeStackScreenProps<MessagesRootStackParamList, 'ChatScreen'> {
@@ -18,6 +19,8 @@ export interface ChatScreenProps
     'ChatScreen'
   > & {
     setOptions: (options: ChatHeaderNavigationOptions) => void;
+  } & {
+    chatType: ChatType;
   };
 }
 
@@ -41,9 +44,11 @@ export const ChatScreen = (props: ChatScreenProps): JSX.Element => {
       actions: {
         allowBlock: true,
         allowRemove: true,
+        allowMakePermanentConnection:
+          props.route.params?.chatType === 'GEOFENCE',
       },
     });
-  }, [props.navigation]);
+  }, [props.navigation, props.route.params?.chatType]);
 
   return (
     <PaperProvider>
