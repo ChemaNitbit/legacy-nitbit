@@ -10,8 +10,10 @@ export const NbInteractionPost = ({
   liked,
   countLike,
   onComment,
+  commented,
   countComment,
   onShare,
+  shared,
   countShare,
 }: NbInteractionPostProps) => {
   return (
@@ -25,11 +27,19 @@ export const NbInteractionPost = ({
         <Text style={styles.textCount}>{countLike}</Text>
       </Box>
       <Box>
-        <NbIcon name="comment-outline" size="md" onPress={onComment} />
+        <NbIcon
+          name={commented ? 'comment' : 'comment-outline'}
+          size="md"
+          onPress={onComment}
+        />
         <Text style={styles.textCount}>{countComment}</Text>
       </Box>
       <Box>
-        <NbIcon name="share-outline" size="md" onPress={onShare} />
+        <NbIcon
+          name={shared ? 'share' : 'share-outline'}
+          size="md"
+          onPress={onShare}
+        />
         <Text style={styles.textCount}>{countShare}</Text>
       </Box>
     </Box>

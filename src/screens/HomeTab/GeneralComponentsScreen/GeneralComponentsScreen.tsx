@@ -14,7 +14,6 @@ import {NbIcon} from '../../../components/nb-icon';
 import {NbCardPost} from '../../../components/nb-card-post/NbCardPost';
 import {ScrollView} from 'react-native';
 import {NbCardNotification} from '../../../components/nb-card-notification';
-
 export const GeneralComponentsScreen = () => {
   return (
     <ScrollView>
@@ -54,8 +53,10 @@ export const GeneralComponentsScreen = () => {
         liked={true}
         countLike={2}
         onLike={() => ({})}
+        commented={true}
         countComment={2}
         onComment={() => ({})}
+        shared={true}
         countShare={4}
         onShare={() => ({})}
       />
@@ -63,7 +64,22 @@ export const GeneralComponentsScreen = () => {
       <Text>
         {'\n'} card {'\n'}
       </Text>
-      <NbCardPost>
+      <NbCardPost
+        user={{
+          imgUser: IMAGE_DEFAULT,
+          name: 'Odon',
+          lastName: 'Lozada',
+        }}
+        usersInteraction={{
+          listUser: MOCK_LIST_USERS_RESENT,
+          size: 32,
+        }}
+        liked={true}
+        countLike={2}
+        commented={true}
+        countComment={2}
+        shared={true}
+        countShare={4}>
         <Text>aaa</Text>
       </NbCardPost>
 

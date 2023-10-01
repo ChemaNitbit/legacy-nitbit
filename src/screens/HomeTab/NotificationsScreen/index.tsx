@@ -1,8 +1,10 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import * as React from 'react';
 import {View} from 'react-native';
-import {Button, PaperProvider, Text} from 'react-native-paper';
+import {PaperProvider} from 'react-native-paper';
 import {HomeRootStackParamList} from '../../../navigation/navigators/HomeTabNavigator/HomeRootStackParamList';
+import {NbCardNotification} from '../../../components/nb-card-notification';
+import {IMAGE_DEFAULT} from '../../../contants';
 
 export const NotificationsScreen = (
   props: NativeStackScreenProps<HomeRootStackParamList, 'NotificationsScreen'>,
@@ -17,29 +19,38 @@ export const NotificationsScreen = (
 
   return (
     <PaperProvider>
-      <View>
-        <Text>NotificationsScreen</Text>
-      </View>
       <View style={{padding: 8}}>
-        <Button
-          buttonColor="#098"
-          textColor="#fff"
-          onPress={goToConnectionRequestsScreen}>
-          Aprueba o rechaza las solicitudes
-        </Button>
-        <View style={{marginTop: 8}}>
-          <Button
-            buttonColor="#999"
-            textColor="#000"
-            onPress={() => goToPostDetail('01')}>
-            Notificación de un post
-          </Button>
-          <Button
-            buttonColor="#999"
-            textColor="#000"
-            onPress={() => goToPostDetail('02')}>
-            Notificación de un comentario
-          </Button>
+        <NbCardNotification
+          user={{
+            imgUser: IMAGE_DEFAULT,
+            name: 'odon',
+            lastName: 'lozada',
+          }}
+          type="request"
+          onPress={goToConnectionRequestsScreen}
+          countConection={3}
+        />
+        <View style={{marginTop: 8, gap: 8}}>
+          <NbCardNotification
+            user={{
+              imgUser: IMAGE_DEFAULT,
+              name: 'odon',
+              lastName: 'lozada',
+            }}
+            type="liked"
+            onPress={() => goToPostDetail('01')}
+            timeAction="3 min"
+          />
+          <NbCardNotification
+            user={{
+              imgUser: IMAGE_DEFAULT,
+              name: 'odon',
+              lastName: 'lozada',
+            }}
+            type="comment"
+            onPress={() => goToPostDetail('02')}
+            timeAction="45 min"
+          />
         </View>
       </View>
     </PaperProvider>

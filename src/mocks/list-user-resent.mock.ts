@@ -1,7 +1,7 @@
+import {userResentItem} from '../components/nb-card-post';
 import {IMAGE_DEFAULT} from '../contants';
-import {IUserResentItem} from '../models/nb-users-resent.model';
 
-export const MOCK_LIST_USERS_RESENT: IUserResentItem[] = [
+export const MOCK_LIST_USERS_RESENT: userResentItem[] = [
   {
     id: 1,
     profilePhoto: IMAGE_DEFAULT,

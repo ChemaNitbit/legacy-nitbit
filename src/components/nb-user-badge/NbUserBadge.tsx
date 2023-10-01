@@ -1,8 +1,8 @@
 import {Box} from '@react-native-material/core';
 import React from 'react';
 import {Text} from 'react-native-paper';
+import {NbUserBadgeProps} from '.';
 import NbAvatar from '../nb-avatar/NbAvatar';
-import {NbUserBadgeProps} from './NbUserBadge.types';
 
 export const NbUserBadge = ({
   imgUser,

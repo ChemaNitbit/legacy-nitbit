@@ -1,36 +1,45 @@
 import {Box} from '@react-native-material/core';
 import React from 'react';
-import {NbUserBadge} from '../nb-user-badge';
+import {StyleSheet} from 'react-native';
+import {NbCardPostProps} from '.';
 import {NbIcon} from '../nb-icon';
 import {NbInteractionPost} from '../nb-interaction-post';
+import {NbUserBadge} from '../nb-user-badge';
 import {NbUsersResent} from '../nb-users-resent';
-import {IMAGE_DEFAULT} from '../../contants';
-import {MOCK_LIST_USERS_RESENT} from '../../mocks/list-user-resent.mock';
-import {StyleSheet} from 'react-native';
 
-export const NbCardPost = ({children}: any) => {
+export const NbCardPost = ({
+  children,
+  user,
+  usersInteraction,
+  liked,
+  countLike,
+  commented,
+  countComment,
+  shared,
+  countShare,
+}: NbCardPostProps) => {
+  const {imgUser, name, lastName} = user;
+  const {listUser, size} = usersInteraction;
   return (
     <Box style={styles.cardContent}>
       <Box style={styles.carHeader}>
-        <NbUserBadge
-          imgUser={IMAGE_DEFAULT}
-          title="odon"
-          secondaryLabel="lozada"
-        />
-        <NbIcon name="dots-vertical" size="md" />
+        <NbUserBadge imgUser={imgUser} title={name} secondaryLabel={lastName} />
+        <NbIcon name="dots-vertical" size="md" onPress={() => ({})} />
       </Box>
       <Box>{children}</Box>
       <Box style={styles.cardFooter}>
         <NbInteractionPost
-          liked={true}
-          countLike={2}
+          liked={liked}
+          countLike={countLike}
           onLike={() => ({})}
-          countComment={2}
+          commented={commented}
+          countComment={countComment}
           onComment={() => ({})}
-          countShare={4}
+          shared={shared}
+          countShare={countShare}
           onShare={() => ({})}
         />
-        <NbUsersResent listUser={MOCK_LIST_USERS_RESENT} size={32} />
+        <NbUsersResent listUser={listUser} size={size} />
       </Box>
     </Box>
   );
