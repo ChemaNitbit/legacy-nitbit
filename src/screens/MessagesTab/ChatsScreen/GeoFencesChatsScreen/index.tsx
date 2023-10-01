@@ -76,7 +76,7 @@ export const GeoFencesChatsScreen = (
           },
         ]}>
         <View style={styles.searchContainer}>
-          <NbSearchBar />
+          <NbSearchBar placeholder="Nombre o teléfono" />
         </View>
         <ScrollView
           style={styles.chatsContainer}

@@ -77,7 +77,7 @@ export const ConnectionsChatsScreen = (
           },
         ]}>
         <View style={styles.searchContainer}>
-          <NbSearchBar />
+          <NbSearchBar placeholder="Nombre o teléfono" />
         </View>
         <ScrollView
           style={styles.chatsContainer}
