@@ -1,3 +1,5 @@
+import {UserBadgeProps} from '../nb-user-badge';
+
 export * from './NbCardNotification';
 
 export const VARIANT_NOTIFICATION = {
@@ -7,15 +9,9 @@ export const VARIANT_NOTIFICATION = {
 };
 
 export interface NbCardNotificationProps {
-  user: UserNotificationProps;
+  user: UserBadgeProps;
   type: 'request' | 'comment' | 'liked';
   onPress: () => void;
   countConection?: number;
   timeAction?: string;
-}
-
-export interface UserNotificationProps {
-  imgUser: string;
-  name: string;
-  lastName: string;
 }
