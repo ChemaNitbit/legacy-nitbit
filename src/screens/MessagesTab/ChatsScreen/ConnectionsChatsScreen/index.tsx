@@ -77,13 +77,17 @@ export const ConnectionsChatsScreen = (
           },
         ]}>
         <View style={styles.searchContainer}>
-          <NbSearchBar />
+          <NbSearchBar placeholder="Nombre o teléfono" />
         </View>
         <ScrollView
           style={styles.chatsContainer}
           onScroll={onScroll}
           scrollEventThrottle={16}>
-          <ChatsList {...props} chats={fakeChats(80)} />
+          <ChatsList
+            {...props}
+            chats={fakeChats(80)}
+            type="EXISTING_CONNECTION"
+          />
         </ScrollView>
       </Animated.View>
     </Layout>
