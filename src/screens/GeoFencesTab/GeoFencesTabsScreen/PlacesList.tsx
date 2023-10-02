@@ -2,8 +2,12 @@ import React from 'react';
 import {FlatList, Image, RefreshControl, View} from 'react-native';
 import {Card, Text} from 'react-native-paper';
 
-export const PlacesList = (): JSX.Element => {
-  const places = [
+export const PlacesList = ({
+  onPressItem,
+}: {
+  onPressItem?: (item: any) => void;
+}): JSX.Element => {
+  const zones = [
     {
       id: '1',
       title: 'Parque Castillo',
@@ -129,13 +133,13 @@ export const PlacesList = (): JSX.Element => {
     <FlatList
       refreshControl={<RefreshControl refreshing={false} />}
       showsVerticalScrollIndicator={false}
-      data={places}
+      data={zones}
       style={{height: '100%'}}
       contentContainerStyle={{gap: 16, paddingBottom: 16}}
       keyExtractor={item => item.id}
-      renderItem={({item: place}) => {
+      renderItem={({item: zone}) => {
         return (
-          <Card>
+          <Card onPress={onPressItem}>
             <Card.Content>
               <View style={{flexDirection: 'row', gap: 16, height: 180}}>
                 <View style={{flex: 1}}>
@@ -145,18 +149,18 @@ export const PlacesList = (): JSX.Element => {
                       borderRadius: 8,
                     }}
                     source={{
-                      uri: place.photoUrl,
+                      uri: zone.photoUrl,
                     }}
                   />
                 </View>
                 <View style={{flex: 2}}>
                   <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                    {place.title}
+                    {zone.title}
                   </Text>
-                  <Text>{place.description}</Text>
+                  <Text>{zone.description}</Text>
                   <View
                     style={{flexDirection: 'row', flexWrap: 'wrap', gap: 4}}>
-                    {place.categories.map(category => {
+                    {zone.categories.map(category => {
                       return (
                         <View
                           key={category}

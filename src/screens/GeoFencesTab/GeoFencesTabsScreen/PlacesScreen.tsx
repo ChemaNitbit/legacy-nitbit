@@ -5,7 +5,11 @@ import {Layout} from '../../../components/layout';
 import {PlacesList} from './PlacesList';
 import {View} from 'react-native';
 
-export const PlacesScreen = (): JSX.Element => {
+export const PlacesScreen = (props: any): JSX.Element => {
+  const goToPlaceDetail = () => {
+    props.avigation.navigate('PlaceDetailScreen');
+  };
+
   return (
     <PaperProvider>
       <Layout.NbContainer>
@@ -15,7 +19,7 @@ export const PlacesScreen = (): JSX.Element => {
         <View style={{marginBottom: 16}}>
           <NbSearchBar placeholder="Ir de compras, a turistear, patinar, bailar..." />
         </View>
-        <PlacesList />
+        <PlacesList onPressItem={goToPlaceDetail} />
       </Layout.NbContainer>
     </PaperProvider>
   );

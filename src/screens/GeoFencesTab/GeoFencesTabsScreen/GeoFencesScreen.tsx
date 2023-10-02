@@ -1,9 +1,9 @@
 import React from 'react';
 import {PaperProvider} from 'react-native-paper';
 import MapView, {PROVIDER_GOOGLE, Polygon} from 'react-native-maps';
-import {Alert, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
-export const GeoFencesScreen = (): JSX.Element => {
+export const GeoFencesScreen = (props: any): JSX.Element => {
   const [state] = React.useState({
     coordinates: [
       {latitude: 18.849195, longitude: -97.104676},
@@ -12,6 +12,10 @@ export const GeoFencesScreen = (): JSX.Element => {
       {latitude: 18.849061, longitude: -97.105514},
     ],
   });
+
+  const goToGeoFenceDetail = () => {
+    props.navigation.navigate('GeoFenceDetailScreen');
+  };
 
   return (
     <PaperProvider>
@@ -27,7 +31,7 @@ export const GeoFencesScreen = (): JSX.Element => {
           }}>
           <Polygon
             tappable
-            onPress={() => Alert.alert('Polygon pressed')}
+            onPress={() => goToGeoFenceDetail()}
             key={'asd'}
             coordinates={state.coordinates}
             strokeColor="#F00"
