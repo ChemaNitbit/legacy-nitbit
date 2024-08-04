@@ -40,34 +40,35 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
           liked={true}
           countLike={2}
           commented={true}
-          countComment={2}
+          countComment={12}
           shared={true}
           countShare={4}>
-          <Text>aaa</Text>
+          <Text>
+            Fui a tomar unas fotos al #CerroDelBorrego y conocí a las personas
+            de lo más cool. Gracias #NitBit
+          </Text>
         </NbCardPost>
         <NbCardPost
           user={{
             imgUser: IMAGE_DEFAULT,
-            name: 'Odon',
-            lastName: 'Lozada',
+            name: 'Jesús',
+            lastName: 'Córdova',
           }}
           usersInteraction={{
             listUser: MOCK_LIST_USERS_RESENT,
             size: 32,
           }}
           liked={true}
-          countLike={2}
+          countLike={4}
           commented={true}
-          countComment={2}
+          countComment={8}
           shared={true}
-          countShare={4}>
-          <Text>aaa</Text>
+          countShare={1}>
+          <Text>
+            Acabo de encontrar mi nueva cafetería favorita. Quién para platicar
+            con un expresso?
+          </Text>
         </NbCardPost>
-
-        <NBButton
-          onPress={() => navigateToCatalogComponentes()}
-          title="Componentes Generales"
-        />
       </View>
     </PaperProvider>
   );

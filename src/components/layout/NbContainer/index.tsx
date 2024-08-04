@@ -8,13 +8,16 @@ export const NbContainer = ({children}: {children: any}): JSX.Element => {
 
   return (
     <View
-      style={{...styles.container, backgroundColor: theme.colors.background}}>
+      style={{
+        ...layoutContainerStyles.container,
+        backgroundColor: theme.colors.background,
+      }}>
       {children}
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+export const layoutContainerStyles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,

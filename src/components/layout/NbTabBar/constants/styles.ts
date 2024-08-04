@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   selectedTab: {
-    backgroundColor: '#4776E6', // Adjust as needed
+    backgroundColor: '#80e', // Adjust as needed
     borderRadius: ICON_CONTAINER_SIZE / 2, // Half of the icon height
   },
   avatarContainer: {
